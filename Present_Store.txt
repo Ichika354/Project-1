@@ -1,0 +1,13 @@
+PRESENT STORE
+
+GLOBAL SISTEM
+1. Website terdiri dari 2 akun, pelanggan dan admin.
+2. Pelanggan diwajibkan untuk login terlebih dahulu untuk melakukan pembelian, 
+   jika belum mempunyai akun di harapkan untuk register terlebih dahulu.
+3. Register terdapat isi kolom username, email, password.
+4. Website mempunyai beberapa halaman seperti landing page,home page, halaman login, halaman register,halaman pemesanan 
+   product,halaman tentang kami.
+5. Di bagian landing page terdiri dari carousel kategori2nya, lalu ada card2 bungkusan kado yg jika ingin melihat kita
+   melakukan login terlebih dahulu, terakhir ada footer yg isinya sosmed tokonya,ig,fb,twitter.
+6. Di bagian homepage , user baru bisa melakukan pembelian / menyewa jasa pembuatan kado, isinya ada beberapa kategori
+   yang setiap kategori menampilkan foto kado sesuai kategorinya masing-masing.
