@@ -85,6 +85,16 @@
     display: block;
 }
 
+button {
+    border: none;
+    background-color: transparent;
+}
+
+.login-box button span {
+    position: absolute;
+    display: block;
+}
+
 @keyframes btn-anim1 {
     0% {
         left: -100%;

@@ -1,3 +1,11 @@
+<?php 
+
+require "../config/index.php";
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,17 +21,21 @@
 <body>
 
     <div class="login-box">
-        <form>
+        <form method="POST">
             <div class="user-box">
-                <input type="text" name="" required="">
+                <input type="text" name="username" required="">
                 <label>Username</label>
             </div>
             <div class="user-box">
-                <input type="password" name="" required="">
+                <input type="email" name="email" required="">
+                <label>Email</label>
+            </div>
+            <div class="user-box">
+                <input type="password" name="password" required="">
                 <label>Password</label>
             </div>
             <div class="user-box">
-                <input type="password" name="" required="">
+                <input type="password" name="confirm" required="">
                 <label>Confirm Password</label>
             </div>
             <div class="d-flex justify-content-between align-items-center">
@@ -31,10 +43,10 @@
                     BACK
                     <span></span>
                 </a>
-                <a href="#" class="login a">
+                <button name="submit" class="login a">
                     Regis
                     <span></span>
-                </a>
+                </button>
             </div>
         </form>
     </div>

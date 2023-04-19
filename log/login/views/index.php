@@ -19,6 +19,10 @@
                 <label>Username</label>
             </div>
             <div class="user-box">
+                <input type="email" name="" required="">
+                <label>Email</label>
+            </div>
+            <div class="user-box">
                 <input type="password" name="" required="">
                 <label>Password</label>
             </div>
@@ -27,10 +31,10 @@
                     BACK
                     <span></span>
                 </a>
-                <a href="#" class="login a">
+                <button name="submit" class="login a">
                     LOGIN
                     <span></span>
-                </a>
+                </button>
             </div>
             <div class="regis text-white text-center mt-5">
                 <p>Don't have account? Regis <a href="../../regis/views/index.php">Here</a> </p>
