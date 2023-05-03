@@ -1,3 +1,59 @@
+<?php
+
+session_start();
+
+if (isset($_SESSION["pelanggan"])) {
+    header("../../../Customer");
+} elseif (isset($_SESSION["admin"])) {
+    header("../../../Admin/Dashboard");
+}
+
+require "../../../Function/index.php";
+
+if (isset($_POST["submit"])) {
+
+    $username = $_POST["username"];
+    $password = $_POST["password"];
+
+    $result = mysqli_query($connect, "SELECT * FROM users WHERE username = '$username'");
+
+
+    //cek username
+    if (mysqli_num_rows($result) === 1) {
+
+        //cek password
+        $row = mysqli_fetch_assoc($result);
+        $verif = password_verify($password, $row["password"]);
+
+        if ($verif) {
+            $_SESSION["pelanggan"] = true;
+            $_SESSION["user"] = $username;
+            echo "<script>
+                            window.location.href = '../../../Customer/'
+                        </script>";
+            exit;
+        }
+    }
+    $result2 = mysqli_query($connect, "SELECT * FROM users WHERE username = '$username' ");
+    $cek = mysqli_num_rows($result2);
+
+    if ($cek > 0) {
+        global $result2;
+
+        $data = mysqli_fetch_assoc($result2);
+
+        if ($data["level"] === "admin") {
+            $_SESSION["admin"] = true;
+            echo "<script>
+                    window.location.href = '../../../Admin/Dashboard'
+                </script>";
+        }
+    }
+    $error = true;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,21 +69,24 @@
 <body>
 
     <div class="login-box">
-        <form>
+        <form method="POST">
+            <?php if (isset($error)) : ?>
+                <p class="text-danger">Username atau password salah</p>
+            <?php endif; ?>
             <div class="user-box">
-                <input type="text" name="" required="">
+                <input type="text" name="username" required="">
                 <label>Username</label>
             </div>
             <div class="user-box">
-                <input type="email" name="" required="">
+                <input type="email" name="email" required="">
                 <label>Email</label>
             </div>
             <div class="user-box">
-                <input type="password" name="" required="">
+                <input type="password" name="password" required="">
                 <label>Password</label>
             </div>
             <div class="d-flex justify-content-between align-items-center">
-                <a href="../../../index.php" class="back a">
+                <a href="../../../" class="back a">
                     BACK
                     <span></span>
                 </a>
@@ -36,9 +95,9 @@
                     <span></span>
                 </button>
             </div>
-            <div class="regis text-white text-center mt-5">
+            <!-- <div class="regis text-white text-center mt-5">
                 <p>Don't have account? Regis <a href="../../regis/views/index.php">Here</a> </p>
-            </div>
+            </div> -->
 
         </form>
     </div>

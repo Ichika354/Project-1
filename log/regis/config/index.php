@@ -8,7 +8,7 @@ if (isset($_POST["submit"])) {
         echo
         "<script>
                 alert('Akun berhasil terbuat');
-                window.location.href = '../Login/login.php'
+                window.location.href = '../../login/views/index.php'
             </script>";
     } else {
         echo mysqli_error($connect);

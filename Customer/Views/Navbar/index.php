@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary ">
+<nav class="navbar navbar-expand-lg bg-body-tertiary navbar-dark-bg-dark">
     <div class="container">
         <a class="navbar-brand" href="#">Navbar</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,7 +31,7 @@
             </ul>
             <form class="d-flex" role="search">
                 <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> -->
-                <a class="btn btn-outline-success" href="../../../../../Project-ULBI/Project-1/log/login/views/index.php">Login</a>
+                <a class="btn btn-outline-success" href="../../../../../Project-ULBI/Project-1/log/login/views/">Login</a>
             </form>
         </div>
     </div>
