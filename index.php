@@ -13,7 +13,7 @@
 
 <body>
     <!-- Navbar -->
-    <?php include("Customer/Views/Navbar/index.php"); ?>
+    <?php include("Seller/Views/Navbar/index.php"); ?>
     <!-- Navbar -->
 
     <!-- Landing page -->

@@ -2,8 +2,8 @@
 
 session_start();
 
-if (isset($_SESSION["pelanggan"])) {
-    header("../../../Customer");
+if (isset($_SESSION["penjual"])) {
+    header("../../../Seller");
 } elseif (isset($_SESSION["admin"])) {
     header("../../../Admin/Dashboard");
 }
@@ -26,10 +26,10 @@ if (isset($_POST["submit"])) {
         $verif = password_verify($password, $row["password"]);
 
         if ($verif) {
-            $_SESSION["pelanggan"] = true;
+            $_SESSION["penjual"] = true;
             $_SESSION["user"] = $username;
             echo "<script>
-                            window.location.href = '../../../Customer/'
+                            window.location.href = '../../../Seller/'
                         </script>";
             exit;
         }

@@ -40,7 +40,7 @@ function register($data)
 
     $hash = password_hash($password, PASSWORD_DEFAULT);
 
-    mysqli_query($connect, "INSERT INTO users VALUES('', '$username','$email', '$hash', 'pelanggan')");
+    mysqli_query($connect, "INSERT INTO users VALUES('', '$username','$email', '$hash', 'penjual')");
 
     return mysqli_affected_rows($connect);
 }
