@@ -44,7 +44,7 @@
     </div>
     <div class="slider-body px-1">
         <nav class="nav flex-column ">
-            <a class="nav-link px-3 active text-white" href="../../../../../Project-ULBI/Project-1/Seller/Views/Home/">
+            <a class="nav-link px-3 active text-white" href="../../../../../Project-ULBI/Project-1/Seller/Views/Kategori/">
                 <i class="fa fa-home fa-lg box-icon" aria-hidden="true"></i>Home
             </a>
             <a class="nav-link px-3 text-white" href="../../../../../Project-ULBI/Project-1/Seller/Views/Profile/">

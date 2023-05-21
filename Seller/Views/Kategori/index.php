@@ -1,3 +1,11 @@
+<?php 
+    require "../../../Function/index.php";
+
+    $queryKategori = mysqli_query($connect, "SELECT * FROM kategori");
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,7 +24,7 @@
 
     <?php include("../Navbar_Seller/index.php") ?>
 
-    
+
     <div class="main-pages">
         <div class="container-fluid">
             <div class="row g-2">
@@ -24,7 +32,7 @@
                     <div class="d-block rounded shadow bg-white p-3">
                         <div class="cust-table">
                             <div class="d-flex justify-content-between flex-wrap gap-5 title-table w-100">
-                                <h1>Pelanggan Terbaru</h1>
+                                <h1>DATA KATEGORI</h1>
                                 <form class="d-flex " role="search" method="post">
                                     <table>
                                         <tr>
@@ -42,25 +50,23 @@
                                 <table class="table ms-0">
                                     <tr>
                                         <th scope="col">No.</th>
-                                        <th scope="col">Game</th>
-                                        <th scope="col">Username</th>
-                                        <th scope="col">ID Game</th>
-                                        <th scope="col">Jumlah Diamond</th>
-                                        <th scope="col">Pembayaran</th>
-                                        <th scope="col">Tanggal Pembayaran</th>
+                                        <th scope="col">Kategori</th>
+                                        <th scope="col">Aksi</th>
                                     </tr>
                                     <?php $i = 1; ?>
-                                        <tr>
-                                            <td scope="row"><?= $i; ?></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td> </td>
-                                            <td></td>
-                                        </tr>
-                                        <?php $i++; ?>
+                                    <?php foreach($queryKategori as $kategori) :?>
+                                    <tr>
+                                        <td scope="row"><?= $i; ?></td>
+                                        <td><?= $kategori["nama"]; ?></td>
+                                        <td>
+                                            <a class="btn btn-warning" href="../Kategori/Update/?id=<?= $kategori["id_kategori"]; ?>">ubah</a> |
+                                            <a class="btn btn-danger" href="../Kategori/Delete/?id=<?= $kategori["id_kategori"]; ?>" onclick="return confirm('Yakin mau di hapus?')">hapus</a>
+                                        </td>
+                                    </tr>
+                                    <?php $i++; ?>
+                                    <?php endforeach; ?>
                                 </table>
+                                <a href="Create/" class="btn btn-primary">INPUT</a>
                             </div>
                         </div>
                     </div>

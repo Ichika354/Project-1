@@ -1,3 +1,15 @@
+<?php 
+    require "../../Function/index.php";
+
+    $queryKategori = mysqli_query($connect, "SELECT * FROM kategori");
+    $jumlahKategori = mysqli_num_rows($queryKategori);
+
+    $queryProduk = mysqli_query($connect, "SELECT * FROM produk");
+    $jumlahProduk = mysqli_num_rows($queryProduk);
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,7 +46,7 @@
                         <div class="d-flex align-items-center px-2">
                             <i class="fa fa-bars float-start fa-3x py-auto" aria-hidden="true"></i>
                             <div class="card-body text-end">
-                                <h5 class="card-title">122</h5>
+                                <h5 class="card-title"><?php echo $jumlahKategori; ?></h5>
                                 <p class="card-text">Kategori</p>
                             </div>
                         </div>
@@ -48,7 +60,7 @@
                         <div class="d-flex align-items-center px-2">
                             <i class="fa-solid fa-box float-start fa-3x py-auto"></i>
                             <div class="card-body text-end">
-                                <h5 class="card-title">2</h5>
+                                <h5 class="card-title"><?php echo $jumlahProduk; ?></h5>
                                 <p class="card-text">Produk</p>
                             </div>
                         </div>
@@ -110,24 +122,16 @@
                                 <table class="table ms-0">
                                     <tr>
                                         <th scope="col">No.</th>
-                                        <th scope="col">Game</th>
-                                        <th scope="col">Username</th>
-                                        <th scope="col">ID Game</th>
-                                        <th scope="col">Jumlah Diamond</th>
-                                        <th scope="col">Pembayaran</th>
-                                        <th scope="col">Tanggal Pembayaran</th>
+                                        <th scope="col">Kategori</th>
                                     </tr>
-                                    <?php $i = 1; ?>
+                                    <?php $i = 1 ?>
+                                    <?php foreach($queryKategori as $kategori) : ?>
                                         <tr>
                                             <td scope="row"><?= $i; ?></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td> </td>
-                                            <td></td>
+                                            <td><?= $kategori["nama"] ?></td>
                                         </tr>
-                                        <?php $i++; ?>
+                                    <?php $i++ ?>
+                                    <?php endforeach; ?>
                                 </table>
                             </div>
                         </div>
