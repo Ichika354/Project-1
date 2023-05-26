@@ -1,3 +1,14 @@
+<?php 
+session_start();
+
+require "../../../Function/index.php";
+
+$username = $_SESSION["user"];
+$queryUser = mysqli_query($connect, "SELECT * FROM users WHERE username = '$username'");
+$profile = mysqli_fetch_assoc($queryUser);
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,34 +31,44 @@
     
     <div id="layoutSidenav_content">
             <main class="p-4">
-                <div class="container-fluid px-4 ">
+                <!-- <div class="container-fluid px-4 ">
                     <h1 class="">Profile</h1>
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
                         <li class="breadcrumb-item active">My Account</a></li>
                         <li class="breadcrumb-item active">Profile</li>
                     </ol>
-                </div>
+                </div> -->
                 <br>
                 <div class="main-pages">
                     <div class="container-fluid">
                         <div class="row g-2 mb-3">
                             <div class="col-12">
                                 <div class="d-block bg-white rounded shadow p-3">
-                                    <h4>Project Team</h4>
+                                    <h4>Hello <?= $_SESSION["user"] ?></h4>
                                     <hr>
-                                    <div class="container text-center">
+                                    <div class="container text-align">
                                         <div class="row">
                                             <div class="col">
-                                                <img src="../../assets/images/profile/girl.png" width="100" height="100" class="rounded float-start" alt="...">
-                                                Ghaida Fasya Y.A <br> D4-Teknik Informatika <br> 1B
+                                                <table>
+                                                    <tr>
+                                                        <td class="pe-5"><p>Username</p> </td>
+                                                        <td class="pe-3"><p>:</p></td>
+                                                        <td><p> <?= $_SESSION["user"]; ?></p></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><p>Email</p></td>
+                                                        <td><p>:</p></td>
+                                                        <td><p><?= $profile["email"]; ?></p></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><p>Level</p></td>
+                                                        <td><p>:</p></td>
+                                                        <td><p><?= $profile["level"]; ?></p></td>
+                                                    </tr>
+                                                </table>
+                                                
                                             </div>
-                                            <div class="col">
-                                                <img src="../../assets/images/profile/boy.png" width="100" height="100" class="rounded float-start" alt="...">
-                                                M. Fachriza Farhan <br> D4-Teknik Informatika <br> 1A
-
-                                            </div>
-
                                         </div>
 
                                     </div>

@@ -1,7 +1,11 @@
-<?php 
-    require "../../../Function/index.php";
+<?php
+session_start();
+require "../../../Function/index.php";
 
-    $queryKategori = mysqli_query($connect, "SELECT * FROM kategori");
+$id_user = $_SESSION["id_user"];
+
+$queryKategori = mysqli_query($connect, "SELECT * FROM kategori WHERE id_user = $id_user");
+$query1 = mysqli_query($connect, "SELECT id_kategori FROM kategori ");
 
 
 ?>
@@ -54,17 +58,20 @@
                                         <th scope="col">Aksi</th>
                                     </tr>
                                     <?php $i = 1; ?>
-                                    <?php foreach($queryKategori as $kategori) :?>
-                                    <tr>
-                                        <td scope="row"><?= $i; ?></td>
-                                        <td><?= $kategori["nama"]; ?></td>
-                                        <td>
-                                            <a class="btn btn-warning" href="../Kategori/Update/?id=<?= $kategori["id_kategori"]; ?>">ubah</a> |
-                                            <a class="btn btn-danger" href="../Kategori/Delete/?id=<?= $kategori["id_kategori"]; ?>" onclick="return confirm('Yakin mau di hapus?')">hapus</a>
-                                        </td>
-                                    </tr>
-                                    <?php $i++; ?>
-                                    <?php endforeach; ?>
+                                    <?php //foreach($queryKategori as $kategori) :
+                                    ?>
+                                    <?php while ($row = mysqli_fetch_assoc($queryKategori)) : ?>
+
+                                        <tr>
+                                            <td scope="row"><?= $i; ?></td>
+                                            <td><?= $row["nama"]; ?></td>
+                                            <td>
+                                                <a class="btn btn-secondary" href="../Kategori/Detail/?id=<?= $row["id_kategori"]; ?>">Cari</a>
+                                                <!-- <a class="btn btn-danger" href="../Kategori/Delete/?id=<?= $kategori["id_kategori"]; ?>" onclick="return confirm('Yakin mau di hapus?')">hapus</a> -->
+                                            </td>
+                                        </tr>
+                                        <?php $i++; ?>
+                                    <?php endwhile; ?>
                                 </table>
                                 <a href="Create/" class="btn btn-primary">INPUT</a>
                             </div>

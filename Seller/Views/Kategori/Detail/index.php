@@ -1,44 +1,48 @@
 <?php
-session_start();
-if (!isset($_SESSION["penjual"])) {
-    header("Location: ../../../../");
-    exit;
-}
-
-
 require "../../../../Function/index.php";
 
+// function ubah($data)
+// {
+//     global $connect;
 
-function tambah($data)
-{
-    global $connect;
+//     $id = $data["id"];
+//     $nama = $data["nama"];
 
 
-    $id_penjual = $_SESSION["id_user"] ;
-    $nama = $data["nama"];
-    
 
-    $query = "INSERT INTO kategori VALUES ('','$id_penjual' ,'$nama')";
-    mysqli_query($connect, $query);
+//     $query = "UPDATE kategori SET
+//                 nama = '$nama'
 
-    return mysqli_affected_rows($connect);
-}
+//                 WHERE id_kategori = $id 
+//     ";
 
-if (isset($_POST["submit"])) {
+//     mysqli_query($connect, $query);
 
-    if (tambah($_POST) > 0) {
-        echo
-        "<script>
-                alert('Data berhasil ditambahkan');
-                window.location.href = '../';
-            </script>";
-    } else {
-        echo
-        "<script>
-                alert('Data gagal ditambahkan :( ');
-            </script>";
-    }
-}
+//     return mysqli_affected_rows($connect);
+// }
+
+$id = $_GET["id"];
+
+$query = mysqli_query($connect, "SELECT * FROM kategori WHERE id_kategori = $id");
+$data = mysqli_fetch_array($query);
+
+
+
+// if (isset($_POST["submit"])) {
+
+//     if (ubah($_POST) > 0) {
+//         echo
+//         "<script>
+//                 alert('Data berhasil diubah');
+//                 window.location.href = '../';
+//             </script>";
+//     } else {
+//         echo
+//         "<script>
+//                 alert('Data gagal diubah :( ');
+//             </script>";
+//     }
+// }
 
 
 
@@ -71,7 +75,7 @@ if (isset($_POST["submit"])) {
                     <div class="d-block rounded shadow bg-white p-3 mt-3">
                         <div class="cust-table">
                             <div class="d-flex justify-content-between flex-wrap gap-5 title-table w-100">
-                                <h1>TAMBAH KATEGORI</h1>
+                                <h1>DETAIL KATEGORI</h1>
                             </div>
                             <div class="table mt-5">
 
@@ -82,16 +86,20 @@ if (isset($_POST["submit"])) {
                         <div class="cust-table">
                             <div class="d-flex justify-content-between  flex-wrap gap-5 title-table w-100">
                                 <form action="" method="post">
-                                    <table>
+                                    <table >
                                         <tr>
                                             <td class="p-5"><label for="nama">Nama Kategori</label></td>
-                                            <td class="pe-3">:</td>
-                                            <td><input type="text" placeholder="isi kategori..." name="nama" id="nama" require class="form-control"></td>
+                                            <td class="pe-2">:</td>
+                                            <td><input type="text" disabled placeholder="isi kategori..." name="nama" value="<?= $data["nama"]; ?>" id="nama" require class="form-control"></td>
                                         </tr>
                                         <tr>
                                             <td></td>
                                             <td></td>
-                                            <td><button type="submit" name="submit" class="btn btn-primary">Tambah </button></td>
+                                            <td>
+                                                <a href="../Update/?id=<?= $data["id_kategori"]; ?>" class="btn btn-warning">Ubah</a>
+                                                <a href="../Delete/?id=<?= $data["id_kategori"]; ?>" class="btn btn-danger" onclick="return confirm('Yakin mau di hapus?')">Hapus</a>
+                                            </td>
+
                                         </tr>
                                     </table>
                                 </form>

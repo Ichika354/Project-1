@@ -1,6 +1,6 @@
 <?php
 
-$connect = mysqli_connect("localhost", "root", "", "it-store");
+$connect = mysqli_connect("localhost", "root", "", "it-stores");
 
 function query($query)
 {

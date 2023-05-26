@@ -1,3 +1,16 @@
+<?php 
+session_start();
+
+require "Function/index.php";
+
+
+$goods = query("SELECT * FROM produk");
+
+
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -65,37 +78,21 @@
         </div>
         <!-- Card -->
 
-        <div class="ps-5 d-flex justify-content-center align-items-center">
-            <div class="container mt-5 ">
+        <div class="ps-5 d-flex row justify-content-center align-items-center">
+            <?php foreach($goods as $goodses): ?>
+            <div class="container col-4 mt-5 ">
                 <div class="card" style="width: 18rem;">
-                    <img src="Assets/Images/kado/kado_biasa_2.jpg" class="card-img-top" alt="...">
+                    <img src="Seller/img/FotoProduk/<?= $goodses["foto"]; ?>" height="250"  class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <h5 class="card-title"><?= $goodses["nama_produk"]; ?></h5>
+                        <p class="card-text">Harga : <?= $goodses["harga"]; ?></p>
+                        <p class="card-text"><?= $goodses["detail"]; ?></p>
+                        <a href="#" class="btn btn-primary">Beli</a>
                     </div>
                 </div>
             </div>
-            <div class="container mt-5 ">
-                <div class="card" style="width: 18rem;">
-                    <img src="Assets/Images/kado/kado_biasa_2.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-            <div class="container mt-5 ">
-                <div class="card" style="width: 18rem;">
-                    <img src="Assets/Images/kado/kado_biasa_2.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
+            <?php endforeach; ?>
+            
             <!-- Card end -->
         </div>
         <!-- Deskripsi -->

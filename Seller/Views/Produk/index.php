@@ -1,3 +1,19 @@
+<?php
+session_start();
+
+$id_user = $_SESSION["id_user"];
+
+require "../../../Function/index.php";
+
+$query = query("SELECT a.*,b.nama AS nama_kategori FROM produk a INNER JOIN kategori b ON a.id_kategori=b.id_kategori WHERE a.id_user = $id_user");
+
+$query1 = query("SELECT id FROM produk WHERE id_user = $id_user");
+
+
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,7 +32,7 @@
 
     <?php include("../Navbar_Seller/index.php") ?>
 
-    
+
     <div class="main-pages">
         <div class="container-fluid">
             <div class="row g-2">
@@ -24,7 +40,7 @@
                     <div class="d-block rounded shadow bg-white p-3">
                         <div class="cust-table">
                             <div class="d-flex justify-content-between flex-wrap gap-5 title-table w-100">
-                                <h1>Pelanggan Terbaru</h1>
+                                <h1>DATA PRODUK</h1>
                                 <form class="d-flex " role="search" method="post">
                                     <table>
                                         <tr>
@@ -42,25 +58,31 @@
                                 <table class="table ms-0">
                                     <tr>
                                         <th scope="col">No.</th>
-                                        <th scope="col">Game</th>
-                                        <th scope="col">Username</th>
-                                        <th scope="col">ID Game</th>
-                                        <th scope="col">Jumlah Diamond</th>
-                                        <th scope="col">Pembayaran</th>
-                                        <th scope="col">Tanggal Pembayaran</th>
+                                        <th scope="col">Foto</th>
+                                        <th scope="col">Nama Produk</th>
+                                        <th scope="col">Kategori</th>
+                                        <th scope="col">Harga</th>
+                                        <th scope="col">Detail</th>
+                                        <th scope="col">Aksi</th>
                                     </tr>
                                     <?php $i = 1; ?>
+                                    <?php foreach ($query as $produk) : ?>
                                         <tr>
                                             <td scope="row"><?= $i; ?></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td> </td>
-                                            <td></td>
+                                            <td><img src="../../img/FotoProduk/<?= $produk["foto"]; ?>" width="100" alt=""></td>
+                                            <td><?= $produk["nama_produk"]; ?></td>
+                                            <td><?= $produk["nama_kategori"]; ?></td>
+                                            <td><?= $produk["harga"]; ?></td>
+                                            <td><?= $produk["detail"]; ?></td>
+                                            <td><a href="Update/?id=<?= $produk["id"]; ?>" class="btn btn-warning">Ubah</a> |
+                                                <a href="Delete/?id=<?= $produk["id"]; ?>" class="btn btn-danger" onclick="return confirm('Yakin mau di hapus?')">Delete</a>
+                                            </td>
                                         </tr>
                                         <?php $i++; ?>
+                                        <?php endforeach; ?>
+                                    <?php //endforeach; ?>
                                 </table>
+                                <a href="Create/" class="btn btn-primary">INPUT</a>
                             </div>
                         </div>
                     </div>

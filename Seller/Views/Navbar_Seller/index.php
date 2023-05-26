@@ -1,4 +1,15 @@
-<nav class="navbar navbar-expand-md navbar-light bg-light py-1 mt-0">
+<?php
+// session_start();
+
+
+$username = $_SESSION["user"];
+$queryUser = mysqli_query($connect, "SELECT * FROM users WHERE username = '$username'");
+$profile = mysqli_fetch_assoc($queryUser);
+
+
+?>
+
+<!-- <nav class="navbar navbar-expand-md navbar-light bg-light py-1 mt-0">
     <div class="container-fluid">
         <button class="btn btn-default" id="btn-slider" type="button">
             <i class="fa fa-bars fa-lg" aria-hidden="true"></i>
@@ -13,7 +24,7 @@
                     <div class="d-flex p-3 border-bottom mb-2">
                         <img src="../../assets/images//user/user.png" alt="user" class="img-user me-2">
                         <div class="d-block">
-                            <p class="fw-bold m-0 lh-1">YourName</p>
+                            <p class="fw-bold m-0 lh-1"></p>
                             <small>YourAccount@gmail.com</small>
                         </div>
                     </div>
@@ -31,34 +42,33 @@
             </li>
         </ul>
     </div>
-</nav>
+</nav> -->
 
 <!-- Sidebar -->
 <div class="slider" id="sliders">
     <div class="slider-head">
         <div class="d-block pt-4 pb-3 px-3">
-            <img src="../../assets/images//user/user.png" alt="user" class="slider-img-user mb-2">
-            <p class="fw-bold mb-0 lh-1 text-white">YourName</p>
-            <small class="text-white">YourAccount@gmail.com</small>
+            <p class="fw-bold mb-0 lh-1 text-white"><?= $_SESSION["user"]; ?></p>
+            <small class="text-white"><?= $profile["email"]; ?></small>
         </div>
     </div>
     <div class="slider-body px-1">
         <nav class="nav flex-column ">
-            <a class="nav-link px-3 active text-white" href="../../../../../Project-ULBI/Project-1/Seller/Views/Kategori/">
-                <i class="fa fa-home fa-lg box-icon" aria-hidden="true"></i>Home
+            <a class="nav-link px-3 text-white" href="../../../../../Project-ULBI/Project-1/Seller/">
+                <i class="fa fa-dashboard fa-lg box-icon" aria-hidden="true"></i>Dashboard
             </a>
             <a class="nav-link px-3 text-white" href="../../../../../Project-ULBI/Project-1/Seller/Views/Profile/">
                 <i class="fa fa-user fa-lg box-icon" aria-hidden="true"></i>Profile
             </a>
             <hr class="soft my-1 bg-white">
-            <a class="nav-link px-3 text-white" href="../../../../../Project-ULBI/Project-1/Seller/">
-                <i class="fa fa-dashboard fa-lg box-icon" aria-hidden="true"></i>Dashboard
+            <a class="nav-link px-3 active text-white" href="../../../../../Project-ULBI/Project-1/Seller/Views/Kategori/">
+                <i class="fa fa-list fa-lg box-icon" aria-hidden="true"></i>Kategori
             </a>
             <a class="nav-link px-3 text-white" href="../../../../../Project-ULBI/Project-1/Seller/Views/Produk/">
                 <i class="fa fa-box fa-lg box-icon" aria-hidden="true"></i>Produk
             </a>
             <hr class="soft my-1 bg-white">
-            <a class="nav-link px-3 text-white" onclick="return confirm('Yakin mau keluar?');" href="../../index.php">
+            <a class="nav-link px-3 text-white" onclick="return confirm('Yakin mau keluar?');" href="../../../log/logout/index.php">
                 <i class="fa fa-sign-out fa-lg box-icon" aria-hidden="true"></i>LogOut
             </a>
         </nav>

@@ -3,22 +3,14 @@
 require '../../../../Function/index.php';
 $id = $_GET["id"];
 
-$query = mysqli_query($connect, "SELECT * FROM kategori WHERE id_kategori = $id");
+$query = mysqli_query($connect, "SELECT * FROM produk WHERE id = $id");
 $data = mysqli_fetch_array($query);
 
-$count = mysqli_num_rows($query);
-
-if ($count > 0) {
-    echo "<script>
-            alert('Kategori tidak dapat di hapus karena sudah memiliki produk')
-            window.location.href = '../';
-        </script>";
-        die();
-}
+// $count = mysqli_num_rows($query);
 
 function hapus($id) {
     global $connect;
-    mysqli_query($connect, "DELETE FROM kategori WHERE id_kategori = $id");
+    mysqli_query($connect, "DELETE FROM produk WHERE id = $id");
 
     return mysqli_affected_rows($connect);
 }
