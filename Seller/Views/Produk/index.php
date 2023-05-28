@@ -62,7 +62,7 @@ $query1 = query("SELECT id FROM produk WHERE id_user = $id_user");
                                         <th scope="col">Nama Produk</th>
                                         <th scope="col">Kategori</th>
                                         <th scope="col">Harga</th>
-                                        <th scope="col">Detail</th>
+                                        <!-- <th scope="col">Detail</th> -->
                                         <th scope="col">Aksi</th>
                                     </tr>
                                     <?php $i = 1; ?>
@@ -73,7 +73,7 @@ $query1 = query("SELECT id FROM produk WHERE id_user = $id_user");
                                             <td><?= $produk["nama_produk"]; ?></td>
                                             <td><?= $produk["nama_kategori"]; ?></td>
                                             <td><?= $produk["harga"]; ?></td>
-                                            <td><?= $produk["detail"]; ?></td>
+                                            <!-- <td><?= $produk["detail"]; ?></td> -->
                                             <td><a href="Update/?id=<?= $produk["id"]; ?>" class="btn btn-warning">Ubah</a> |
                                                 <a href="Delete/?id=<?= $produk["id"]; ?>" class="btn btn-danger" onclick="return confirm('Yakin mau di hapus?')">Delete</a>
                                             </td>

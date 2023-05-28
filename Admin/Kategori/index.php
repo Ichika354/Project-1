@@ -1,13 +1,11 @@
 <?php
-require "../../../Function/index.php";
-session_start();
+// require "../Function/index.php";
 
+// $queryKategori = mysqli_query($connect, "SELECT * FROM kategori");
+// $jumlahKategori = mysqli_num_rows($queryKategori);
 
-$id_user = $_SESSION["id_user"];
-
-$queryKategori = mysqli_query($connect, "SELECT * FROM kategori 
-                                         WHERE id_user = $id_user");
-// $query1 = mysqli_query($connect, "SELECT id_kategori FROM kategori ");
+// $queryProduk = mysqli_query($connect, "SELECT * FROM produk");
+// $jumlahProduk = mysqli_num_rows($queryProduk);
 
 
 ?>
@@ -19,16 +17,16 @@ $queryKategori = mysqli_query($connect, "SELECT * FROM kategori
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
-    <link rel="stylesheet" href="../Style/index.css">
+    <title>Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+    <link rel="stylesheet" href="../style/style.css">
 </head>
 
 <body>
 
-    <?php include("../Navbar_Seller/index.php") ?>
+    <?php include "../Navbar/index.php"; ?>
+
 
 
     <div class="main-pages">
@@ -53,26 +51,27 @@ $queryKategori = mysqli_query($connect, "SELECT * FROM kategori
                                 </form>
                             </div>
                             <div class="table mt-5">
-                            <table class="table ms-0">
+                                <table class="table ms-0">
                                     <tr>
                                         <th scope="col">No.</th>
                                         <th scope="col">Kategori</th>
                                         <th scope="col">Aksi</th>
                                     </tr>
                                     <?php $i = 1; ?>
-                                    <?php while ($row = mysqli_fetch_assoc($queryKategori)) : ?>
+                                    <?php //foreach($queryKategori as $kategori) :
+                                    ?>
+                                    <?php //while ($row = mysqli_fetch_assoc($queryKategori)) : ?>
+
                                         <tr>
                                             <td scope="row"><?= $i; ?></td>
-                                            <td><?= $row["nama"]; ?></td>
+                                            <td></td>
                                             <td>
-                                                <a class="btn btn-secondary" 
-                                                   href="../Kategori/Detail/?id=<?= $row["id_kategori"]; ?>">
-                                                   Cari
-                                                </a>
+                                                <a class="btn btn-secondary" href="../Kategori/Detail/?id=<?= $row["id_kategori"]; ?>">Cari</a>
+                                                <!-- <a class="btn btn-danger" href="../Kategori/Delete/?id=<?= $kategori["id_kategori"]; ?>" onclick="return confirm('Yakin mau di hapus?')">hapus</a> -->
                                             </td>
                                         </tr>
                                         <?php $i++; ?>
-                                    <?php endwhile; ?>
+                                    <?php //endwhile; ?>
                                 </table>
                                 <a href="Create/" class="btn btn-primary">INPUT</a>
                             </div>
@@ -85,6 +84,14 @@ $queryKategori = mysqli_query($connect, "SELECT * FROM kategori
         </div>
     </div>
 
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>
 
 </html>

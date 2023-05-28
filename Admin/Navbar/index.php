@@ -46,18 +46,18 @@
         </div>
         <div class="slider-body px-1">
             <nav class="nav flex-column ">
-                <a class="nav-link px-3 active text-white" href="../home/home.php">
-                    <i class="fa fa-home fa-lg box-icon" aria-hidden="true"></i>Home
+                <a class="nav-link px-3 text-white" href="#">
+                    <i class="fa fa-dashboard fa-lg box-icon" aria-hidden="true"></i>Dashboard
                 </a>
-                <a class="nav-link px-3 text-white" href="../profile/profile.php">
+                <a class="nav-link px-3 text-white" href="../Profile/">
                     <i class="fa fa-user fa-lg box-icon" aria-hidden="true"></i>Profile
                 </a>
                 <hr class="soft my-1 bg-white">
-                <a class="nav-link px-3 text-white" href="../dashboard/dashboard.php">
-                    <i class="fa fa-dashboard fa-lg box-icon" aria-hidden="true"></i>Dashboard
+                <a class="nav-link px-3 active text-white" href="../Kategori">
+                    <i class="fa fa-list fa-lg box-icon" aria-hidden="true"></i>Kategori
                 </a>
-                <a class="nav-link px-3 text-white" href="../customer/customer.php">
-                    <i class="fa fa-users fa-lg box-icon" aria-hidden="true"></i>Customer
+                <a class="nav-link px-3 text-white" href="../Produk">
+                    <i class="fa fa-box fa-lg box-icon" aria-hidden="true"></i>Produk
                 </a>
                 <hr class="soft my-1 bg-white">
                 <a class="nav-link px-3 text-white" onclick="return confirm('Yakin mau keluar?');" href="../../index.php">

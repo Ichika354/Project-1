@@ -16,34 +16,30 @@ if (isset($_POST["submit"])) {
     $password = $_POST["password"];
 
     $result = mysqli_query($connect, "SELECT * FROM users WHERE username = '$username'");
-    $result1 = mysqli_query($connect, "SELECT id_user FROM users WHERE username = '$username'");
 
 
     //cek username
-    if (mysqli_num_rows($result) === 1 && mysqli_num_rows($result1) === 1) {
+    if (mysqli_num_rows($result) === 1) {
 
         //cek password
         $row = mysqli_fetch_assoc($result);
-        $row1 = mysqli_fetch_assoc($result1);
         $verif = password_verify($password, $row["password"]);
 
         if ($verif) {
             $_SESSION["penjual"] = true;
             $_SESSION["user"] = $username;
-            $_SESSION["id_user"] = $row1["id_user"];
+            $_SESSION["id_user"] = $row["id_user"];
             echo "<script>
                             window.location.href = '../../../Seller/'
                         </script>";
             exit;
         }
     }
-    $result2 = mysqli_query($connect, "SELECT * FROM users WHERE username = '$username' ");
-    $cek = mysqli_num_rows($result2);
+    $cek = mysqli_num_rows($result);
 
     if ($cek > 0) {
-        global $result2;
 
-        $data = mysqli_fetch_assoc($result2);
+        $data = mysqli_fetch_assoc($result);
 
         if ($data["level"] === "admin") {
             $_SESSION["admin"] = true;
@@ -70,6 +66,10 @@ if (isset($_POST["submit"])) {
 </head>
 
 <body>
+
+    <div class="text-center pt-5">
+        <h1>Halaman login</h1>
+    </div>
 
     <div class="login-box">
         <form method="POST">

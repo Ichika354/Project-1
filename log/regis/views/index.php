@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 require "../config/index.php";
 
@@ -20,6 +20,10 @@ require "../config/index.php";
 
 <body>
 
+    <div class="text-center pt-4    ">
+        <h1>Halaman Register</h1>
+    </div>
+
     <div class="login-box">
         <form method="POST">
             <div class="user-box">
@@ -39,7 +43,7 @@ require "../config/index.php";
                 <label>Confirm Password</label>
             </div>
             <div class="d-flex justify-content-between align-items-center">
-                <a href="../../login/views/index.php" class="back a">
+                <a href="../../../" class="back a">
                     BACK
                     <span></span>
                 </a>

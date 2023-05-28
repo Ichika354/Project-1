@@ -44,9 +44,7 @@ $jumlahproduk = mysqli_num_rows($produk);
                 <div class="col-12">
                     <div class="d-block bg-white rounded shadow p-3">
                         <h2>Hello <?= $_SESSION["user"]; ?></h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum labore maiores facilis
-                            optio illo tempora quod omnis veniam dolores. Est porro omnis, quae numquam velit
-                            accusantium perferendis inventore sint consectetur.</p>
+                        <p>Selamat datang di halaman admin! Kami sangat senang Anda telah bergabung dengan kami sebagai administrator. Halaman ini memberikan akses dan kontrol penuh untuk mengelola dan mengatur berbagai aspek yang terkait dengan situs atau aplikasi ini.</p>
                     </div>
                 </div>
             </div>

@@ -3,6 +3,8 @@ session_start();
 
 require "../../../../Function/index.php";
 
+$id_user = $_SESSION["id_user"] ;
+
 
 
 $kategori = mysqli_query($connect, "SELECT * FROM kategori WHERE id_user = $id_user");
@@ -25,7 +27,7 @@ function tambahProduk($data)
         return false;
     }
 
-    $query = "INSERT INTO produk (`id` ,`id_kategori`,`id_user` ,`nama_produk`, `harga`,`foto`, `detail` ) VALUES ('', '$kategori', '$id_penjual','$produk','$harga', '$foto' ,'$detail')";
+    $query = "INSERT INTO produk (`id` ,`id_kategori`,`id_user` ,`nama_produk`, `harga`,`foto`, `detail` )  VALUES ('', '$kategori', '$id_penjual','$produk','$harga', '$foto' ,'$detail')";
     mysqli_query($connect, $query);
 
     return mysqli_affected_rows($connect);
