@@ -4,8 +4,8 @@ session_start();
 require "Function/index.php";
 
 
-$goods = query("SELECT a.*,b.nama AS nama_kategori FROM produk a INNER JOIN kategori b ON a.id_kategori=b.id_kategori");
-
+// $goods = query("SELECT a.*,b.nama AS nama_kategori FROM produk a INNER JOIN kategori b ON a.id_kategori=b.id_kategori");
+$query = mysqli_query($connect, "SELECT * FROM users");
 
 
 
@@ -18,9 +18,9 @@ $goods = query("SELECT a.*,b.nama AS nama_kategori FROM produk a INNER JOIN kate
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Freelancer - Start Bootstrap Theme</title>
+    <title>IT-STORE</title>
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="Assets/Images/6817300.jpg" />
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <!-- Google fonts-->
@@ -29,6 +29,127 @@ $goods = query("SELECT a.*,b.nama AS nama_kategori FROM produk a INNER JOIN kate
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/style.css" rel="stylesheet" />
 </head>
+
+<style>
+    .flip-card {
+        background-color: transparent;
+        width: 190px;
+        height: 254px;
+        perspective: 1000px;
+        font-family: sans-serif;
+    }
+
+    .title {
+        font-size: 1.5em;
+        font-weight: 900;
+        text-align: center;
+        margin: 0;
+    }
+
+    .flip-card-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        transition: transform 0.8s;
+        transform-style: preserve-3d;
+    }
+
+    .flip-card:hover .flip-card-inner {
+        transform: rotateY(180deg);
+    }
+
+    .flip-card-front,
+    .flip-card-back {
+        box-shadow: 0 8px 14px 0 rgba(0, 0, 0, 0.2);
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        border: 1px solid coral;
+        border-radius: 1rem;
+    }
+
+    .flip-card-front {
+        /* background: linear-gradient(120deg, bisque 60%, rgb(255, 231, 222) 88%, */
+        /* rgb(255, 211, 195) 40%, rgba(255, 127, 80, 0.603) 48%); */
+        /* color: coral; */
+    }
+
+    .flip-card-back {
+        /* background: linear-gradient(120deg, rgb(255, 174, 145) 30%, coral 88%, */
+        /* bisque 40%, rgb(255, 185, 160) 78%); */
+        color: black;
+        transform: rotateY(180deg);
+    }
+
+    .foto img {
+        /* aspect-ratio: 9/16; */
+        width: 190px;
+        height: 254px;
+        border-radius: 2em;
+    }
+
+    .button {
+        --color: #00A97F;
+        padding: 0.8em 1.7em;
+        background-color: transparent;
+        border-radius: .3em;
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+        transition: .5s;
+        font-weight: 400;
+        font-size: 17px;
+        border: 1px solid;
+        font-family: inherit;
+        text-transform: uppercase;
+        color: var(--color);
+        z-index: 1;
+    }
+
+    .button::before,
+    .button::after {
+        content: '';
+        display: block;
+        width: 50px;
+        height: 50px;
+        transform: translate(-50%, -50%);
+        position: absolute;
+        border-radius: 50%;
+        z-index: -1;
+        background-color: var(--color);
+        transition: 1s ease;
+    }
+
+    .button::before {
+        top: -1em;
+        left: -1em;
+    }
+
+    .button::after {
+        left: calc(100% + 1em);
+        top: calc(100% + 1em);
+    }
+
+    .button:hover::before,
+    .button:hover::after {
+        height: 410px;
+        width: 410px;
+    }
+
+    .button:hover {
+        color: rgb(10, 25, 30);
+    }
+
+    .button:active {
+        filter: brightness(.8);
+    }
+</style>
 
 <body id="page-top">
     <!-- Navigation-->
@@ -55,7 +176,7 @@ $goods = query("SELECT a.*,b.nama AS nama_kategori FROM produk a INNER JOIN kate
     <section class="page-section portfolio" id="portfolio">
         <div class="container">
             <!-- Portfolio Section Heading-->
-            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Produk</h2>
+            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Penjual</h2>
             <!-- Icon Divider-->
             <div class="divider-custom">
                 <div class="divider-custom-line"></div>
@@ -65,18 +186,23 @@ $goods = query("SELECT a.*,b.nama AS nama_kategori FROM produk a INNER JOIN kate
             <!-- Portfolio Grid Items-->
             <div class="row justify-content-center">
                 <!-- Portfolio Item 1-->
-                <?php foreach ($goods as $goodses) : ?>
-                    <div class="col-md-6 col-lg-4 mb-5">
-                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal1">
-                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                                <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
-                            </div>
-                            <div class="w-100">
-                                <img class="img-fluid w-100 h-100" src="Seller/img/FotoProduk/<?= $goodses["foto"]; ?>" alt="..." />
+                <?php while ($user = mysqli_fetch_assoc($query)) :
+                ?>
+                    <div class="col-md-6 col-lg-2 mb-5 ">
+                        <div class="flip-card pe-4">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front foto">
+                                    <p class="title"><?= $user["username"]; ?></p>
+                                </div>
+                                <div class="flip-card-back p-2">
+                                    <a href="Detail/?id=<?= $user["id_user"]; ?>"  class="button"> Detail
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                <?php endforeach; ?>
+                <?php endwhile;
+                ?>
             </div>
         </div>
     </section>

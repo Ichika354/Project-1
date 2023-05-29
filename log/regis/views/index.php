@@ -1,6 +1,27 @@
 <?php
 
-require "../config/index.php";
+require "../../../Function/index.php";
+
+if (isset($_POST["submit"])) {
+    $verif = $_POST["verifikasi"];
+    $ulbi = "Universitas Logistik & Bisnis Internasional";
+    if ($verif === $ulbi) {
+        if (register($_POST) > 0) {
+            echo
+            "<script>
+                    alert('Akun berhasil terbuat');
+                    window.location.href = '../../login/views/index.php'
+                </script>";
+        } else {
+            echo mysqli_error($connect);
+        }
+    } else {
+        echo "<script>
+                alert('Maaf anda bukan mahasiswa dari univ kami')
+            </script>";
+    }
+}
+
 
 
 ?>
@@ -20,7 +41,7 @@ require "../config/index.php";
 
 <body>
 
-    <div class="text-center pt-4    ">
+    <div class="text-center pt-4">
         <h1>Halaman Register</h1>
     </div>
 
@@ -28,11 +49,11 @@ require "../config/index.php";
         <form method="POST">
             <div class="user-box">
                 <input type="text" name="username" required="">
-                <label>Username</label>
+                <label>Nama Lengkap</label>
             </div>
             <div class="user-box">
-                <input type="email" name="email" required="">
-                <label>Email</label>
+                <input type="number" name="email" required="">
+                <label>No. Telp</label>
             </div>
             <div class="user-box">
                 <input type="password" name="password" required="">
@@ -41,6 +62,13 @@ require "../config/index.php";
             <div class="user-box">
                 <input type="password" name="confirm" required="">
                 <label>Confirm Password</label>
+            </div>
+            <div class="user-box">
+                <input type="text" name="verifikasi" required onfocus="">
+                <label>Verifikasi</label>
+            </div>
+            <div class="user-box pb-3">
+                <label>ISI NAMA UNIV ANDA SESUAI LOGO</label>
             </div>
             <div class="d-flex justify-content-between align-items-center">
                 <a href="../../../" class="back a">

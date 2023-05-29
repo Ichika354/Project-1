@@ -19,6 +19,7 @@ function ubah($data)
     $produk = $data["produk"];
     $harga = $data["harga"];
     $detail = $data["detail"];
+    $stok = $data["stok"];
     $fotoLama = $data["fotoLama"];
 
     if ($_FILES["foto"]["error"] === 4) {
@@ -32,6 +33,7 @@ function ubah($data)
                 nama_produk = '$produk',
                 harga       = '$harga',
                 foto        = '$foto',
+                stok        = '$stok',
                 detail      = '$detail'
 
 
@@ -168,6 +170,11 @@ if (isset($_POST["submit"])) {
                                             <td class="pe-3 pb-4">:</td>
                                             <td class="pb-4"><input type="file" name="foto" id="foto" class="form-control"></td>
                                             <td class="pb-4 ps-2"><img src="../../../img/FotoProduk/<?= $produk["foto"]; ?>" alt="" width="100"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="pe-4 pb-4"><label for="stok">Ketersediaan Stok</label></td>
+                                            <td class="pe-3 pb-4">:</td>
+                                            <td class="pb-4"><input type="number" placeholder="isi stok..." name="stok" id="stok" required class="form-control" value="<?= $produk["stok"]; ?>"></td>
                                         </tr>
                                         <tr>
                                             <td class="pe-4 pb-4"><label for="detail">Detail</label></td>

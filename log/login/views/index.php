@@ -15,6 +15,7 @@ if (isset($_POST["submit"])) {
     $username = $_POST["username"];
     $password = $_POST["password"];
 
+
     $result = mysqli_query($connect, "SELECT * FROM users WHERE username = '$username'");
 
 
@@ -24,16 +25,17 @@ if (isset($_POST["submit"])) {
         //cek password
         $row = mysqli_fetch_assoc($result);
         $verif = password_verify($password, $row["password"]);
-
-        if ($verif) {
-            $_SESSION["penjual"] = true;
-            $_SESSION["user"] = $username;
-            $_SESSION["id_user"] = $row["id_user"];
-            echo "<script>
-                            window.location.href = '../../../Seller/'
-                        </script>";
-            exit;
-        }
+            if ($verif) {
+                $_SESSION["penjual"] = true;
+                $_SESSION["user"] = $username;
+                $_SESSION["id_user"] = $row["id_user"];
+                echo "<script>
+                                window.location.href = '../../../Seller/'
+                            </script>";
+                exit;
+            } 
+        
+        
     }
     $cek = mysqli_num_rows($result);
 
@@ -78,16 +80,13 @@ if (isset($_POST["submit"])) {
             <?php endif; ?>
             <div class="user-box">
                 <input type="text" name="username" required="">
-                <label>Username</label>
-            </div>
-            <div class="user-box">
-                <input type="email" name="email" required="">
-                <label>Email</label>
+                <label>Nama Lengkap</label>
             </div>
             <div class="user-box">
                 <input type="password" name="password" required="">
                 <label>Password</label>
             </div>
+            
             <div class="d-flex justify-content-between align-items-center">
                 <a href="../../../" class="back a">
                     BACK

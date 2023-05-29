@@ -20,6 +20,7 @@ function tambahProduk($data)
     $harga = $data["harga"];
     $kategori = $data["kategori"];
     $detail = $data["detail"];
+    $stok = $data["stok"];
 
     $foto = upload();
 
@@ -27,7 +28,7 @@ function tambahProduk($data)
         return false;
     }
 
-    $query = "INSERT INTO produk (`id` ,`id_kategori`,`id_user` ,`nama_produk`, `harga`,`foto`, `detail` )  VALUES ('', '$kategori', '$id_penjual','$produk','$harga', '$foto' ,'$detail')";
+    $query = "INSERT INTO produk (`id` ,`id_kategori`,`id_user` ,`nama_produk`, `harga`,`foto`,`stok`, `detail` )  VALUES ('', '$kategori', '$id_penjual','$produk','$harga', '$foto' ,'$stok' ,'$detail')";
     mysqli_query($connect, $query);
 
     return mysqli_affected_rows($connect);
@@ -160,6 +161,11 @@ if (isset($_POST["submit"])) {
                                             <td class="pe-4 pb-4"><label for="foto">Foto</label></td>
                                             <td class="pe-3 pb-4">:</td>
                                             <td class="pb-4"><input type="file" name="foto" id="foto"  class="form-control"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="pe-4 pb-4"><label for="stok">Ketersediaan Stok</label></td>
+                                            <td class="pe-3 pb-4">:</td>
+                                            <td class="pb-4"><input type="number" name="stok" id="stok"  class="form-control"></td>
                                         </tr>
                                         <tr>
                                             <td class="pe-4 pb-4"><label for="detail">Detail</label></td>

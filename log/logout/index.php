@@ -7,7 +7,7 @@ session_destroy();
 
 $_SESSION = [];
 
-header("Location: ../../Project-ULBI/Project-1/");
+header("Location: ../../");
 
 
 ?>
