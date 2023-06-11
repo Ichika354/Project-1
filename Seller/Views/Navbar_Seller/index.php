@@ -2,8 +2,8 @@
 // session_start();
 
 
-$username = $_SESSION["user"];
-$queryUser = mysqli_query($connect, "SELECT * FROM users WHERE username = '$username'");
+$npm = $_SESSION["user"];
+$queryUser = mysqli_query($connect, "SELECT * FROM users WHERE npm = '$npm'");
 $profile = mysqli_fetch_assoc($queryUser);
 
 
@@ -48,8 +48,8 @@ $profile = mysqli_fetch_assoc($queryUser);
 <div class="slider" id="sliders">
     <div class="slider-head">
         <div class="d-block pt-4 pb-3 px-3">
-            <p class="fw-bold mb-0 lh-1 text-white"><?= $_SESSION["user"]; ?></p>
-            <small class="text-white"><?= $profile["email"]; ?></small>
+            <p class="fw-bold mb-0 lh-1 text-white"><?= $profile["username"] ?></p>
+            <small class="text-white"><?= $profile["no_telp"]; ?></small>
         </div>
     </div>
     <div class="slider-body px-1">

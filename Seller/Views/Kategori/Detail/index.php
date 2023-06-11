@@ -1,49 +1,10 @@
 <?php
 require "../../../../Function/index.php";
 
-// function ubah($data)
-// {
-//     global $connect;
-
-//     $id = $data["id"];
-//     $nama = $data["nama"];
-
-
-
-//     $query = "UPDATE kategori SET
-//                 nama = '$nama'
-
-//                 WHERE id_kategori = $id 
-//     ";
-
-//     mysqli_query($connect, $query);
-
-//     return mysqli_affected_rows($connect);
-// }
-
 $id = $_GET["id"];
 
 $query = mysqli_query($connect, "SELECT * FROM kategori WHERE id_kategori = $id");
 $data = mysqli_fetch_array($query);
-
-
-
-// if (isset($_POST["submit"])) {
-
-//     if (ubah($_POST) > 0) {
-//         echo
-//         "<script>
-//                 alert('Data berhasil diubah');
-//                 window.location.href = '../';
-//             </script>";
-//     } else {
-//         echo
-//         "<script>
-//                 alert('Data gagal diubah :( ');
-//             </script>";
-//     }
-// }
-
 
 
 
@@ -86,7 +47,7 @@ $data = mysqli_fetch_array($query);
                         <div class="cust-table">
                             <div class="d-flex justify-content-between  flex-wrap gap-5 title-table w-100">
                                 <form action="" method="post">
-                                    <table >
+                                    <table>
                                         <tr>
                                             <td class="p-5"><label for="nama">Nama Kategori</label></td>
                                             <td class="pe-2">:</td>
@@ -97,7 +58,9 @@ $data = mysqli_fetch_array($query);
                                             <td></td>
                                             <td>
                                                 <a href="../Update/?id=<?= $data["id_kategori"]; ?>" class="btn btn-warning">Ubah</a>
-                                                <a href="../Delete/?id=<?= $data["id_kategori"]; ?>" class="btn btn-danger" onclick="return confirm('Yakin mau di hapus?')">Hapus</a>
+                                                <a href="../Delete/?id=<?= $data["id_kategori"]; ?>" class="btn btn-danger" onclick="return confirm('Yakin mau di hapus?')">
+                                                    Hapus
+                                                </a>
                                             </td>
 
                                         </tr>

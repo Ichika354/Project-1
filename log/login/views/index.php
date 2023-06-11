@@ -12,11 +12,11 @@ require "../../../Function/index.php";
 
 if (isset($_POST["submit"])) {
 
-    $username = $_POST["username"];
+    $npm = $_POST["npm"];
     $password = $_POST["password"];
 
 
-    $result = mysqli_query($connect, "SELECT * FROM users WHERE username = '$username'");
+    $result = mysqli_query($connect, "SELECT * FROM users WHERE npm = '$npm'");
 
 
     //cek username
@@ -27,7 +27,7 @@ if (isset($_POST["submit"])) {
         $verif = password_verify($password, $row["password"]);
             if ($verif) {
                 $_SESSION["penjual"] = true;
-                $_SESSION["user"] = $username;
+                $_SESSION["user"] = $npm;
                 $_SESSION["id_user"] = $row["id_user"];
                 echo "<script>
                                 window.location.href = '../../../Seller/'
@@ -76,11 +76,11 @@ if (isset($_POST["submit"])) {
     <div class="login-box">
         <form method="POST">
             <?php if (isset($error)) : ?>
-                <p class="text-danger">Username atau password salah</p>
+                <p class="text-danger">NPM atau password salah</p>
             <?php endif; ?>
             <div class="user-box">
-                <input type="text" name="username" required="">
-                <label>Nama Lengkap</label>
+                <input type="text" name="npm" required="">
+                <label>NPM</label>
             </div>
             <div class="user-box">
                 <input type="password" name="password" required="">

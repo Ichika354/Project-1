@@ -29,13 +29,13 @@ if (isset($_POST["submit"])) {
     if (tambah($_POST) > 0) {
         echo
         "<script>
-                alert('Data berhasil ditambahkan');
+                alert('Kategori berhasil ditambahkan');
                 window.location.href = '../';
             </script>";
     } else {
         echo
         "<script>
-                alert('Data gagal ditambahkan :( ');
+                alert('Kategori gagal ditambahkan :( ');
             </script>";
     }
 }

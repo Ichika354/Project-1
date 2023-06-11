@@ -8,8 +8,8 @@ if (!isset($_SESSION["penjual"])) {
 $id_user = $_SESSION["id_user"];
 
 require "../Function/index.php";
-$username = $_SESSION["user"];
-$queryUser = mysqli_query($connect, "SELECT * FROM users WHERE username = '$username'");
+$npm = $_SESSION["user"];
+$queryUser = mysqli_query($connect, "SELECT * FROM users WHERE npm = '$npm'");
 $profile = mysqli_fetch_assoc($queryUser);
 
 $kategori = mysqli_query($connect, "SELECT * FROM kategori WHERE id_user = $id_user");
@@ -43,7 +43,7 @@ $jumlahproduk = mysqli_num_rows($produk);
             <div class="row g-2 mb-3">
                 <div class="col-12">
                     <div class="d-block bg-white rounded shadow p-3">
-                        <h2>Hello <?= $_SESSION["user"]; ?></h2>
+                        <h2>Hello <?= $profile["username"]; ?></h2>
                         <p>Selamat datang di halaman admin! Kami sangat senang Anda telah bergabung dengan kami sebagai administrator. Halaman ini memberikan akses dan kontrol penuh untuk mengelola dan mengatur berbagai aspek yang terkait dengan situs atau aplikasi ini.</p>
                     </div>
                 </div>
@@ -78,34 +78,6 @@ $jumlahproduk = mysqli_num_rows($produk);
                         </div>
                     </div>
                 </div>
-                <!-- <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-                    <div class="card p-2 shadow">
-                        <div class="d-flex align-items-center px-2">
-                            <i class="fa fa-calendar float-start fa-3x py-auto" aria-hidden="true"></i>
-                            <div class="card-body text-end">
-                                <h5 class="card-title">122</h5>
-                                <p class="card-text">Pleanning</p>
-                            </div>
-                        </div>
-                        <div class="card-footer bg-white">
-                            <small class="text-start fw-bold">Your Schedule</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-                    <div class="card p-2 shadow">
-                        <div class="d-flex align-items-center px-2">
-                            <i class="fa fa-users float-start fa-3x py-auto" aria-hidden="true"></i>
-                            <div class="card-body text-end">
-                                <h5 class="card-title">122</h5>
-                                <p class="card-text">Customer</p>
-                            </div>
-                        </div>
-                        <div class="card-footer bg-white">
-                            <small class="text-start fw-bold">Your Customer</small>
-                        </div>
-                    </div>
-                </div> -->
             </div>
         </div>
     </div>

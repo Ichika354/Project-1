@@ -8,7 +8,7 @@ $id_user = $_SESSION["id_user"];
 $id = $_GET["id"];
 $produk = query("SELECT a.*, b.nama AS nama_kategori FROM produk a INNER JOIN kategori b ON a.id_kategori=b.id_kategori  WHERE a.id = $id")[0];
 
-$query = query("SELECT * FROM kategori WHERE id_user = $id_user");
+$query = mysqli_query($connect, "SELECT * FROM kategori WHERE id_user = $id_user");
 
 function ubah($data)
 {
@@ -88,18 +88,17 @@ function upload()
 }
 
 if (isset($_POST["submit"])) {
-
     if (ubah($_POST) > 0) {
         echo
         "<script>
-                alert('Data berhasil diubah');
-                window.location.href = '../';
-            </script>";
+            alert('Data berhasil diubah');
+            window.location.href = '../';
+        </script>";
     } else {
         echo
         "<script>
-                alert('Data gagal diubah :( ');
-            </script>";
+            alert('Data gagal diubah :( ');
+        </script>";
     }
 }
 ?>

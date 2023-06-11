@@ -5,7 +5,7 @@ require "Function/index.php";
 
 
 // $goods = query("SELECT a.*,b.nama AS nama_kategori FROM produk a INNER JOIN kategori b ON a.id_kategori=b.id_kategori");
-$query = mysqli_query($connect, "SELECT * FROM users");
+$goods = mysqli_query($connect, "SELECT * FROM produk");
 
 
 
@@ -186,16 +186,16 @@ $query = mysqli_query($connect, "SELECT * FROM users");
             <!-- Portfolio Grid Items-->
             <div class="row justify-content-center">
                 <!-- Portfolio Item 1-->
-                <?php while ($user = mysqli_fetch_assoc($query)) :
+                <?php while ($user = mysqli_fetch_assoc($goods)) :
                 ?>
                     <div class="col-md-6 col-lg-2 mb-5 ">
                         <div class="flip-card pe-4">
                             <div class="flip-card-inner">
                                 <div class="flip-card-front foto">
-                                    <p class="title"><?= $user["username"]; ?></p>
+                                    <p class="title"><?= $user["nama_produk"]; ?></p>
                                 </div>
                                 <div class="flip-card-back p-2">
-                                    <a href="Detail/?id=<?= $user["id_user"]; ?>"  class="button"> Detail
+                                    <a href="Detail/?id=<?= $user["id"]; ?>"  class="button"> Detail
                                     </a>
                                 </div>
                             </div>

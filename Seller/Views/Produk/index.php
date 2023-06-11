@@ -69,14 +69,20 @@ $query = mysqli_query($connect, "SELECT a.*,b.nama AS nama_kategori FROM produk 
                                     <?php while ($produk = mysqli_fetch_assoc($query)) : ?>
                                         <tr>
                                             <td scope="row"><?= $i; ?></td>
-                                            <td><img src="../../img/FotoProduk/<?= $produk["foto"]; ?>" width="100" alt=""></td>
+                                            <td><img src="../../img/FotoProduk/<?= $produk["foto"]; ?>" 
+                                                     width="100" alt=""></td>
                                             <td><?= $produk["nama_produk"]; ?></td>
                                             <td><?= $produk["nama_kategori"]; ?></td>
                                             <td><?= $produk["harga"]; ?></td>
                                             <td><?= $produk["stok"]; ?></td>
                                             <!-- <td><?= $produk["detail"]; ?></td> -->
-                                            <td><a href="Update/?id=<?= $produk["id"]; ?>" class="btn btn-warning">Ubah</a> |
-                                                <a href="Delete/?id=<?= $produk["id"]; ?>" class="btn btn-danger" onclick="return confirm('Yakin mau di hapus?')">Delete</a>
+                                            <td>
+                                                <a href="Update/?id=<?= $produk["id"]; ?>" 
+                                                   class="btn btn-warning">Ubah</a> |
+                                                <a href="Delete/?id=<?= $produk["id"]; ?>" 
+                                                   class="btn btn-danger" 
+                                                   onclick="return confirm('Yakin mau di hapus?')">Delete
+                                                </a>
                                             </td>
                                         </tr>
                                         <?php $i++; ?>

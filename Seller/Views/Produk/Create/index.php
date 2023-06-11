@@ -81,13 +81,13 @@ if (isset($_POST["submit"])) {
     if (tambahProduk($_POST) > 0) {
         echo
         "<script>
-                alert('Data berhasil ditambahkan');
+                alert('Produk berhasil ditambahkan');
                 window.location.href = '../';
             </script>";
     } else {
         echo
         "<script>
-                alert('Data gagal ditambahkan :( ');
+                alert('Produk gagal ditambahkan :( ');
             </script>";
     }
 }

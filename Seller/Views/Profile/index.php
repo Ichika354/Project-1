@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 
 require "../../../Function/index.php";
@@ -27,11 +27,11 @@ $profile = mysqli_fetch_assoc($queryUser);
 
     <?php include("../Navbar_Seller/index.php") ?>
 
-    
-    
+
+
     <div id="layoutSidenav_content">
-            <main class="p-4">
-                <!-- <div class="container-fluid px-4 ">
+        <main class="p-4">
+            <!-- <div class="container-fluid px-4 ">
                     <h1 class="">Profile</h1>
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
@@ -39,45 +39,74 @@ $profile = mysqli_fetch_assoc($queryUser);
                         <li class="breadcrumb-item active">Profile</li>
                     </ol>
                 </div> -->
-                <br>
-                <div class="main-pages">
-                    <div class="container-fluid">
-                        <div class="row g-2 mb-3">
-                            <div class="col-12">
-                                <div class="d-block bg-white rounded shadow p-3">
-                                    <h4>Hello <?= $_SESSION["user"] ?></h4>
-                                    <hr>
-                                    <div class="container text-align">
-                                        <div class="row">
-                                            <div class="col">
-                                                <table>
-                                                    <tr>
-                                                        <td class="pe-5"><p>Username</p> </td>
-                                                        <td class="pe-3"><p>:</p></td>
-                                                        <td><p> <?= $_SESSION["user"]; ?></p></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><p>Email</p></td>
-                                                        <td><p>:</p></td>
-                                                        <td><p><?= $profile["email"]; ?></p></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><p>Level</p></td>
-                                                        <td><p>:</p></td>
-                                                        <td><p><?= $profile["level"]; ?></p></td>
-                                                    </tr>
-                                                </table>
-                                                
-                                            </div>
-                                        </div>
+            <br>
+            <div class="main-pages">
+                <div class="container-fluid">
+                    <div class="row g-2 mb-3">
+                        <div class="col-12">
+                            <div class="d-block bg-white rounded shadow p-3">
+                                <h4>Hello <?= $profile["username"]; ?></h4>
+                                <hr>
+                                <div class="container text-align">
+                                    <div class="row">
+                                        <div class="col">
+                                            <table>
+                                                <tr>
+                                                    <td class="pe-5">
+                                                        <p>Nama Lengkap</p>
+                                                    </td>
+                                                    <td class="pe-3">
+                                                        <p>:</p>
+                                                    </td>
+                                                    <td>
+                                                        <p><?= $profile["username"]; ?></p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="pe-5">
+                                                        <p>NPM</p>
+                                                    </td>
+                                                    <td class="pe-3">
+                                                        <p>:</p>
+                                                    </td>
+                                                    <td>
+                                                        <p><?= $_SESSION["user"] ?></p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <p>No Telpon</p>
+                                                    </td>
+                                                    <td>
+                                                        <p>:</p>
+                                                    </td>
+                                                    <td>
+                                                        <p><?= $profile["no_telp"]; ?></p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <p>Level</p>
+                                                    </td>
+                                                    <td>
+                                                        <p>:</p>
+                                                    </td>
+                                                    <td>
+                                                        <p><?= $profile["level"]; ?></p>
+                                                    </td>
+                                                </tr>
+                                            </table>
 
+                                        </div>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-            </main>
-        </div>
+        </main>
+    </div>
 
 </body>
 

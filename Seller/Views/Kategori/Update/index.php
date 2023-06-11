@@ -1,29 +1,27 @@
 <?php
 require "../../../../Function/index.php";
 
+$id = $_GET["id"];
+$kategori = query("SELECT * FROM 
+                   kategori WHERE 
+                   id_kategori = $id")[0];
+
 function ubah($data)
 {
-    global $connect;
+    global $connect ;
 
     $id = $data["id"];
     $nama = $data["nama"];
-   
-
-
+    
     $query = "UPDATE kategori SET
-                nama = '$nama'
-
-                WHERE id_kategori = $id 
+                     nama = '$nama'
+              WHERE id_kategori = $id 
     ";
-
     mysqli_query($connect, $query);
-
     return mysqli_affected_rows($connect);
 }
 
-$id = $_GET["id"];
 
-$kategori = query("SELECT * FROM kategori WHERE id_kategori = $id")[0];
 
 
 if (isset($_POST["submit"])) {
@@ -31,13 +29,13 @@ if (isset($_POST["submit"])) {
     if (ubah($_POST) > 0) {
         echo
         "<script>
-                alert('Data berhasil diubah');
+                alert('Kategori berhasil diubah');
                 window.location.href = '../';
             </script>";
     } else {
         echo
         "<script>
-                alert('Data gagal diubah :( ');
+                alert('Kategori gagal diubah :( ');
             </script>";
     }
 }
@@ -85,16 +83,36 @@ if (isset($_POST["submit"])) {
                             <div class="d-flex justify-content-between  flex-wrap gap-5 title-table w-100">
                                 <form action="" method="post">
                                     <table>
-                                        <input type="hidden" name="id" value="<?= $kategori["id_kategori"] ?>">
+                                        <input 
+                                            type="hidden" 
+                                            name="id" 
+                                            value="<?= $kategori["id_kategori"] ?>">
                                         <tr>
-                                            <td class="p-5"><label for="nama">Nama Kategori</label></td>
+                                            <td class="p-5">
+                                                <label for="nama">Nama Kategori</label>
+                                            </td>
                                             <td class="pe-3">:</td>
-                                            <td><input type="text" placeholder="isi kategori..." name="nama" value="<?= $kategori["nama"]; ?>" id="nama" require class="form-control"></td>
+                                            <td>
+                                                <input 
+                                                    type="text" 
+                                                    name="nama" 
+                                                    value="<?= $kategori["nama"]; ?>" 
+                                                    id="nama" 
+                                                    require 
+                                                    class="form-control">
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td></td>
                                             <td></td>
-                                            <td><button type="submit" name="submit" class="btn btn-primary">Ubah </button></td>
+                                            <td>
+                                                <button 
+                                                    type="submit" 
+                                                    name="submit" 
+                                                    class="btn btn-primary">
+                                                    Ubah 
+                                                </button>
+                                            </td>
                                         </tr>
                                     </table>
                                 </form>

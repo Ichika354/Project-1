@@ -3,9 +3,18 @@
 require "../../../Function/index.php";
 
 if (isset($_POST["submit"])) {
-    $verif = $_POST["verifikasi"];
-    $ulbi = "Universitas Logistik & Bisnis Internasional";
-    if ($verif === $ulbi) {
+    $npm = $_POST["npm"];
+    if ($npm >= 614220001 && $npm <= 699999999) {
+        if (register($_POST) > 0) {
+            echo
+            "<script>
+                    alert('Akun berhasil terbuat');
+                    window.location.href = '../../login/views/index.php'
+                </script>";
+        } else {
+            echo mysqli_error($connect);
+        }
+    } elseif ($npm >= 714220001 && $npm <= 799999999) {
         if (register($_POST) > 0) {
             echo
             "<script>
@@ -21,6 +30,7 @@ if (isset($_POST["submit"])) {
             </script>";
     }
 }
+
 
 
 
@@ -41,7 +51,7 @@ if (isset($_POST["submit"])) {
 
 <body>
 
-    <div class="text-center pt-4">
+    <div class="text-center pt-3">
         <h1>Halaman Register</h1>
     </div>
 
@@ -64,11 +74,8 @@ if (isset($_POST["submit"])) {
                 <label>Confirm Password</label>
             </div>
             <div class="user-box">
-                <input type="text" name="verifikasi" required onfocus="">
-                <label>Verifikasi</label>
-            </div>
-            <div class="user-box pb-3">
-                <label>ISI NAMA UNIV ANDA SESUAI LOGO</label>
+                <input type="text" name="npm" required onfocus="">
+                <label>NPM</label>
             </div>
             <div class="d-flex justify-content-between align-items-center">
                 <a href="../../../" class="back a">
