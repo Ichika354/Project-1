@@ -4,7 +4,7 @@ require "../../../Function/index.php";
 
 if (isset($_POST["submit"])) {
     $npm = $_POST["npm"];
-    if ($npm >= 614220001 && $npm <= 699999999) {
+    if ($npm >= 614220001 && $npm <= 699220000) {
         if (register($_POST) > 0) {
             echo
             "<script>
@@ -14,7 +14,7 @@ if (isset($_POST["submit"])) {
         } else {
             echo mysqli_error($connect);
         }
-    } elseif ($npm >= 714220001 && $npm <= 799999999) {
+    } elseif ($npm >= 714220001 && $npm <= 799220000) {
         if (register($_POST) > 0) {
             echo
             "<script>

@@ -1,6 +1,6 @@
 <?php
 
-$connect = mysqli_connect("localhost", "root", "", "it-stores");
+$connect = mysqli_connect("localhost", "root", "", "it-store");
 
 function query($query)
 {
@@ -20,7 +20,7 @@ function register($data)
 
 
     $npm = strtolower(stripslashes($data["npm"]));
-    $username = strtolower(stripslashes($data["username"]));
+    $username = stripslashes($data["username"]);
     $email = strtolower(stripslashes($data["email"]));
     $password = mysqli_real_escape_string($connect, $data["password"]);
     $confirm = mysqli_real_escape_string($connect, $data["confirm"]);

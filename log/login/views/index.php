@@ -37,19 +37,19 @@ if (isset($_POST["submit"])) {
         
         
     }
-    $cek = mysqli_num_rows($result);
+    // $cek = mysqli_num_rows($result);
 
-    if ($cek > 0) {
+    // if ($cek > 0) {
 
-        $data = mysqli_fetch_assoc($result);
+    //     $data = mysqli_fetch_assoc($result);
 
-        if ($data["level"] === "admin") {
-            $_SESSION["admin"] = true;
-            echo "<script>
-                    window.location.href = '../../../Admin/Dashboard'
-                </script>";
-        }
-    }
+    //     if ($data["level"] === "admin") {
+    //         $_SESSION["admin"] = true;
+    //         echo "<script>
+    //                 window.location.href = '../../../Admin/Dashboard'
+    //             </script>";
+    //     }
+    // }
     $error = true;
 }
 
