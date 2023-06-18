@@ -1,70 +1,78 @@
-<nav class="navbar navbar-expand-md navbar-light bg-light py-1 mt-0">
-        <div class="container-fluid">
-            <button class="btn btn-default" id="btn-slider" type="button">
-                <i class="fa fa-bars fa-lg" aria-hidden="true"></i>
-            </button>
-            <a class="navbar-brand me-auto text-danger" href="#">Dash<span class="text-warning">Board</span></a>
-            <ul class="nav ms-auto">
-                <li class="nav-item dropstart">
-                    <a class="nav-link text-dark ps-3 pe-1" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
-                        <img src="../../assets/images/user/user.png" alt="user" class="img-user">
-                    </a>
-                    <div class="dropdown-menu mt-2 pt-0" aria-labelledby="navbarDropdown">
-                        <div class="d-flex p-3 border-bottom mb-2">
-                            <img src="../../assets/images//user/user.png" alt="user" class="img-user me-2">
-                            <div class="d-block">
-                                <p class="fw-bold m-0 lh-1">YourName</p>
-                                <small>YourAccount@gmail.com</small>
-                            </div>
+<?php
+session_start();
+
+
+$npm = $_SESSION["user_admin"];
+$queryUser = mysqli_query($connect, "SELECT * FROM users WHERE npm = '$npm'");
+$profile = mysqli_fetch_assoc($queryUser);
+
+
+?>
+
+<!-- <nav class="navbar navbar-expand-md navbar-light bg-light py-1 mt-0">
+    <div class="container-fluid">
+        <button class="btn btn-default" id="btn-slider" type="button">
+            <i class="fa fa-bars fa-lg" aria-hidden="true"></i>
+        </button>
+        <a class="navbar-brand me-auto text-danger" href="#">Dash<span class="text-warning">Board</span></a>
+        <ul class="nav ms-auto">
+            <li class="nav-item dropstart">
+                <a class="nav-link text-dark ps-3 pe-1" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                    <img src="../../assets/images/user/user.png" alt="user" class="img-user">
+                </a>
+                <div class="dropdown-menu mt-2 pt-0" aria-labelledby="navbarDropdown">
+                    <div class="d-flex p-3 border-bottom mb-2">
+                        <img src="../../assets/images//user/user.png" alt="user" class="img-user me-2">
+                        <div class="d-block">
+                            <p class="fw-bold m-0 lh-1"></p>
+                            <small>YourAccount@gmail.com</small>
                         </div>
-                        <a class="dropdown-item" href="#">
-                            <i class="fa fa-user fa-lg me-3" aria-hidden="true"></i>Profile
-                        </a>
-                        <a class="dropdown-item" href="#">
-                            <i class="fa fa-cog fa-lg me-3" aria-hidden="true"></i>Setting
-                        </a>
-                        <hr class="dropdown-divider">
-                        <a class="dropdown-item" href="../../index.php">
-                            <i class="fa fa-sign-out fa-lg me-2" aria-hidden="true"></i>LogOut
-                        </a>
                     </div>
-                </li>
-            </ul>
-        </div>
-    </nav>
+                    <a class="dropdown-item" href="#">
+                        <i class="fa fa-user fa-lg me-3" aria-hidden="true"></i>Profile
+                    </a>
+                    <a class="dropdown-item" href="#">
+                        <i class="fa fa-cog fa-lg me-3" aria-hidden="true"></i>Setting
+                    </a>
+                    <hr class="dropdown-divider">
+                    <a class="dropdown-item" href="../../index.php">
+                        <i class="fa fa-sign-out fa-lg me-2" aria-hidden="true"></i>LogOut
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav> -->
 
-    <!-- Sidebar -->
-
-
-    <div class="slider" id="sliders">
-        <div class="slider-head">
-            <div class="d-block pt-4 pb-3 px-3">
-                <img src="../../assets/images//user/user.png" alt="user" class="slider-img-user mb-2">
-                <p class="fw-bold mb-0 lh-1 text-white">YourName</p>
-                <small class="text-white">YourAccount@gmail.com</small>
-            </div>
-        </div>
-        <div class="slider-body px-1">
-            <nav class="nav flex-column ">
-                <a class="nav-link px-3 text-white" href="#">
-                    <i class="fa fa-dashboard fa-lg box-icon" aria-hidden="true"></i>Dashboard
-                </a>
-                <a class="nav-link px-3 text-white" href="../Profile/">
-                    <i class="fa fa-user fa-lg box-icon" aria-hidden="true"></i>Profile
-                </a>
-                <hr class="soft my-1 bg-white">
-                <a class="nav-link px-3 active text-white" href="../Kategori">
-                    <i class="fa fa-list fa-lg box-icon" aria-hidden="true"></i>Kategori
-                </a>
-                <a class="nav-link px-3 text-white" href="../Produk">
-                    <i class="fa fa-box fa-lg box-icon" aria-hidden="true"></i>Produk
-                </a>
-                <hr class="soft my-1 bg-white">
-                <a class="nav-link px-3 text-white" onclick="return confirm('Yakin mau keluar?');" href="../../index.php">
-                    <i class="fa fa-sign-out fa-lg box-icon" aria-hidden="true"></i>LogOut
-                </a>
-            </nav>
+<!-- Sidebar -->
+<div class="slider" id="sliders">
+    <div class="slider-head">
+        <div class="d-block pt-4 pb-3 px-3">
+            <p class="fw-bold mb-0 lh-1 text-white"><?= $profile["username"] ?></p>
+            <small class="text-white"><?= $profile["no_telp"]; ?></small>
         </div>
     </div>
+    <div class="slider-body px-1">
+        <nav class="nav flex-column ">
+            <a class="nav-link px-3 text-white" href="../../../../../Project-ULBI/Project-1/Admin/">
+                <i class="fa fa-dashboard fa-lg box-icon" aria-hidden="true"></i>Dashboard
+            </a>
+            <a class="nav-link px-3 text-white" href="../../../../../Project-ULBI/Project-1/Admin/Profile/">
+                <i class="fa fa-user fa-lg box-icon" aria-hidden="true"></i>Profile
+            </a>
+            <hr class="soft my-1 bg-white">
+            <a class="nav-link px-3 active text-white" href="../../../../../Project-ULBI/Project-1/Admin/Penjual/">
+                <i class="fa fa-users fa-lg box-icon" aria-hidden="true"></i>Penjual
+            </a>
+            <a class="nav-link px-3 text-white" href="../../../../../Project-ULBI/Project-1/Admin/Produk/">
+                <i class="fa fa-box fa-lg box-icon" aria-hidden="true"></i>Produk
+            </a>
+            <hr class="soft my-1 bg-white">
+            <a class="nav-link px-3 text-white" onclick="return confirm('Yakin mau keluar?');" href="../../../../../Project-ULBI/Project-1/log/logout/">
+                <i class="fa fa-sign-out fa-lg box-icon" aria-hidden="true"></i>LogOut
+            </a>
+        </nav>
+    </div>
+</div>
 
-    <!-- Sidebar end -->
+<!-- Sidebar end -->

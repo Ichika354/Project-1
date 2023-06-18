@@ -4,7 +4,12 @@ require "../Function/index.php";
 $id = $_GET["id"];
 // $query = mysqli_query($connect,"SELECT a.*, b.nama AS nama_kategori FROM produk a INNER JOIN kategori b ON a.id_kategori=b.id_kategori  WHERE a.id_user = $id")[0];
 
-$query = query("SELECT * FROM produk WHERE id = $id")[0];
+// $query = query("SELECT * FROM produk WHERE id = $id")[0];
+$query = query("SELECT a.*, b.nama AS nama_kategori, c.*  FROM produk a INNER JOIN kategori b ON a.id_kategori = b.id_kategori INNER JOIN users c ON a.id_user = c.id_user WHERE a.id = '$id'
+")[0];
+
+$harga = $query["harga"];
+$rupiah = number_format($harga, 0, '.', '.');
 
 ?>
 
@@ -35,7 +40,6 @@ $query = query("SELECT * FROM produk WHERE id = $id")[0];
     <!-- content -->
     <section class="jumbotron text-center" id="home">
         <h1 class="display-4" id="nama"></h1>
-        <!-- <p class="lead">If you want to buy some food or drink you can buy my recommandation</p> -->
     </section>
     <div class="container mt-5">
         <div class="card mb-3" style="max-width: 1000px;">
@@ -45,31 +49,65 @@ $query = query("SELECT * FROM produk WHERE id = $id")[0];
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
+                        <table>
+                            <tr>
+                                <td class="pe-3 pb-2">Seller</td>
+                                <td class="pe-3 pb-2"> </td>
+                                <td class="pe-3 pb-2">
+                                    <b>
+                                        <?= $query["username"]; ?>
+                                    </b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="pe-3 pb-2">No Telp</td>
+                                <td class="pe-3 pb-2"> </td>
+                                <td class="pe-3 pb-2">
+                                    <?= $query["no_telp"]; ?>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="pe-3 pb-2">Produk</td>
+                                <td class="pe-3 pb-2"> </td>
+                                <td class="pe-3 pb-2">
+                                    <?= $query["nama_produk"]; ?>
+
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td class="pe-3 pb-2">Harga</td>
+                                <td class="pe-3 pb-2"> </td>
+                                <td class="pe-3 pb-2">
+                                    Rp <?= $rupiah ?>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="pe-3 pb-2">Stok</td>
+                                <td class="pe-3 pb-2"> </td>
+                                <td class="pe-3 pb-2">
+                                    <?= $query["stok"]; ?>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="pe-3 pb-2">Deskripsi</td>
+                                <td class="pe-3 pb-2"> </td>
+                                <td class="pe-3 pb-2"><?= $query["detail"]; ?></td>
+
+                            </tr>
+                        </table>
+                        <!-- <p class="card-text"><?= $query["penjual"]; ?></p>
                         <h5 class="card-title"><?= $query["nama_produk"]; ?></h5>
                         <p class="card-text">Rp. <?= $query["harga"]; ?></p>
                         <p class="card-text"><?= $query["stok"]; ?> stok</p>
-                        <p class="card-text"><?= $query["detail"]; ?></p>
-                        <!-- <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p> -->
+                        <p class="card-text"><?= $query["detail"]; ?></p> -->
+                        <a href="../" class="btn btn-warning">BACK</a>
                         <a href="/" class="btn btn-primary">BUY</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- <div class="row d-flex justify-content-center align-items-center w-100 mt-3 gap-4">
-        <div class="card col-sm-6" style="width: 18rem">
-            <img src="" class="card-img-top" alt="..." />
-            <div class="card-body">
-                <h5 class="card-title"><?= $query["nama_produk"]; ?></h5>
-                <p class="card-text">Harga : Rp. <?= $query["harga"]; ?></p>
-                <p class="card-text">kategori : <?= $query["nama_kategori"]; ?></p>
-                <p class="card-text">Stok : <?= $query["stok"]; ?></p>
-                <p class="card-text">Detail : <?= $query["detail"]; ?></p>
-                <button class="btn btn-primary" >Buy</button>
-            </div>
-        </div>
-    </div> -->
-
     <!-- content -->
 
     <!-- JavaScript Bundle with Popper -->

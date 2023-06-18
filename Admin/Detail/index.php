@@ -1,12 +1,13 @@
 <?php
-// session_start();
+
+$id_user = $_GET["id"];
+
 require "../../Function/index.php";
 
-// $queryKategori = mysqli_query($connect, "SELECT * FROM kategori");
-// $jumlahKategori = mysqli_num_rows($queryKategori);
+$query = mysqli_query($connect, "SELECT a.*,b.nama AS nama_kategori FROM produk a INNER JOIN kategori b ON a.id_kategori=b.id_kategori WHERE a.id_user = $id_user");
 
-// $queryProduk = mysqli_query($connect, "SELECT * FROM produk");
-// $jumlahProduk = mysqli_num_rows($queryProduk);
+
+
 
 
 ?>
@@ -18,15 +19,14 @@ require "../../Function/index.php";
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <link rel="stylesheet" href="../Style/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="../style/style.css">
+
 </head>
 
 <body>
-
-    <?php include "../Navbar/index.php"; ?>
 
 
 
@@ -37,7 +37,7 @@ require "../../Function/index.php";
                     <div class="d-block rounded shadow bg-white p-3">
                         <div class="cust-table">
                             <div class="d-flex justify-content-between flex-wrap gap-5 title-table w-100">
-                                <h1>DATA KATEGORI</h1>
+                                <h1>DATA PRODUK</h1>
                                 <form class="d-flex " role="search" method="post">
                                     <table>
                                         <tr>
@@ -55,26 +55,29 @@ require "../../Function/index.php";
                                 <table class="table ms-0">
                                     <tr>
                                         <th scope="col">No.</th>
+                                        <th scope="col">Foto</th>
+                                        <th scope="col">Nama Produk</th>
                                         <th scope="col">Kategori</th>
-                                        <th scope="col">Aksi</th>
+                                        <th scope="col">Harga</th>
+                                        <th scope="col">Stok</th>
+                                        <!-- <th scope="col">Detail</th> -->
                                     </tr>
                                     <?php $i = 1; ?>
-                                    <?php //foreach($queryKategori as $kategori) :
-                                    ?>
-                                    <?php //while ($row = mysqli_fetch_assoc($queryKategori)) : ?>
-
+                                    <?php while ($produk = mysqli_fetch_assoc($query)) : ?>
                                         <tr>
                                             <td scope="row"><?= $i; ?></td>
-                                            <td></td>
-                                            <td>
-                                                <a class="btn btn-secondary" href="../Kategori/Detail/?id=<?= $row["id_kategori"]; ?>">Cari</a>
-                                                <!-- <a class="btn btn-danger" href="../Kategori/Delete/?id=<?= $kategori["id_kategori"]; ?>" onclick="return confirm('Yakin mau di hapus?')">hapus</a> -->
-                                            </td>
+                                            <td><img src="../../Seller/img/FotoProduk/<?=$produk["foto"]; ?>" width="100" alt=""></td>
+                                            <td><?= $produk["nama_produk"]; ?></td>
+                                            <td><?= $produk["nama_kategori"]; ?></td>
+                                            <td><?= $produk["harga"]; ?></td>
+                                            <td><?= $produk["stok"]; ?></td>
                                         </tr>
                                         <?php $i++; ?>
-                                    <?php //endwhile; ?>
+                                    <?php endwhile; ?>
+                                    <?php //endforeach; 
+                                    ?>
                                 </table>
-                                <a href="Create/" class="btn btn-primary">INPUT</a>
+                                <a href="../Penjual/" class="btn btn-primary">Back</a>
                             </div>
                         </div>
                     </div>
@@ -85,14 +88,6 @@ require "../../Function/index.php";
         </div>
     </div>
 
-
-
-
-
-
-
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>
 
 </html>

@@ -1,12 +1,8 @@
 <?php
 // session_start();
 require "../../Function/index.php";
+$queryPenjual = mysqli_query($connect, "SELECT * FROM users WHERE level = 'penjual' ORDER BY id_user DESC");
 
-// $queryKategori = mysqli_query($connect, "SELECT * FROM kategori");
-// $jumlahKategori = mysqli_num_rows($queryKategori);
-
-// $queryProduk = mysqli_query($connect, "SELECT * FROM produk");
-// $jumlahProduk = mysqli_num_rows($queryProduk);
 
 
 ?>
@@ -37,7 +33,7 @@ require "../../Function/index.php";
                     <div class="d-block rounded shadow bg-white p-3">
                         <div class="cust-table">
                             <div class="d-flex justify-content-between flex-wrap gap-5 title-table w-100">
-                                <h1>DATA KATEGORI</h1>
+                                <h1>DATA PENJUAL</h1>
                                 <form class="d-flex " role="search" method="post">
                                     <table>
                                         <tr>
@@ -55,26 +51,28 @@ require "../../Function/index.php";
                                 <table class="table ms-0">
                                     <tr>
                                         <th scope="col">No.</th>
-                                        <th scope="col">Kategori</th>
-                                        <th scope="col">Aksi</th>
+                                        <th scope="col">Nama Penjual</th>
+                                        <th scope="col">NPM</th>
+                                        <th scope="col">No Telpon</th>
+                                        <th scope="col">Produk</th>
                                     </tr>
                                     <?php $i = 1; ?>
                                     <?php //foreach($queryKategori as $kategori) :
                                     ?>
-                                    <?php //while ($row = mysqli_fetch_assoc($queryKategori)) : ?>
+                                    <?php while ($row = mysqli_fetch_assoc($queryPenjual)) : ?>
 
                                         <tr>
                                             <td scope="row"><?= $i; ?></td>
-                                            <td></td>
+                                            <td><?= $row["username"]; ?></td>
+                                            <td><?= $row["npm"]; ?></td>
+                                            <td><?= $row["no_telp"]; ?></td>
                                             <td>
-                                                <a class="btn btn-secondary" href="../Kategori/Detail/?id=<?= $row["id_kategori"]; ?>">Cari</a>
-                                                <!-- <a class="btn btn-danger" href="../Kategori/Delete/?id=<?= $kategori["id_kategori"]; ?>" onclick="return confirm('Yakin mau di hapus?')">hapus</a> -->
+                                                <a class="btn btn-secondary" href="../Detail/?id=<?= $row["id_user"]; ?>">Lihat</a>
                                             </td>
                                         </tr>
                                         <?php $i++; ?>
-                                    <?php //endwhile; ?>
+                                    <?php endwhile; ?>
                                 </table>
-                                <a href="Create/" class="btn btn-primary">INPUT</a>
                             </div>
                         </div>
                     </div>

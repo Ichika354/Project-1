@@ -3,8 +3,6 @@ session_start();
 
 require "Function/index.php";
 
-
-// $goods = query("SELECT a.*,b.nama AS nama_kategori FROM produk a INNER JOIN kategori b ON a.id_kategori=b.id_kategori");
 $goods = mysqli_query($connect, "SELECT * FROM produk");
 
 
@@ -31,123 +29,72 @@ $goods = mysqli_query($connect, "SELECT * FROM produk");
 </head>
 
 <style>
-    .flip-card {
-        background-color: transparent;
-        width: 190px;
-        height: 254px;
-        perspective: 1000px;
-        font-family: sans-serif;
+    .foto {
+        width: 220px;
+        height: 300px;
     }
-
-    .title {
-        font-size: 1.5em;
-        font-weight: 900;
-        text-align: center;
-        margin: 0;
-    }
-
-    .flip-card-inner {
+    .book {
         position: relative;
-        width: 100%;
-        height: 100%;
-        text-align: center;
-        transition: transform 0.8s;
-        transform-style: preserve-3d;
-    }
-
-    .flip-card:hover .flip-card-inner {
-        transform: rotateY(180deg);
-    }
-
-    .flip-card-front,
-    .flip-card-back {
-        box-shadow: 0 8px 14px 0 rgba(0, 0, 0, 0.2);
-        position: absolute;
+        border-radius: 10px;
+        width: 220px;
+        height: 300px;
+        background-color: whitesmoke;
+        -webkit-box-shadow: 1px 1px 12px #000;
+        box-shadow: 1px 1px 12px #000;
+        -webkit-transform: preserve-3d;
+        -ms-transform: preserve-3d;
+        transform: preserve-3d;
+        -webkit-perspective: 2000px;
+        perspective: 2000px;
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        flex-direction: column;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
         justify-content: center;
+        color: #000;
+    }
+
+    .cover {
+        top: 0;
+        position: absolute;
+        background-color: lightgray;
         width: 100%;
         height: 100%;
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden;
-        border: 1px solid coral;
-        border-radius: 1rem;
-    }
-
-    .flip-card-front {
-        /* background: linear-gradient(120deg, bisque 60%, rgb(255, 231, 222) 88%, */
-        /* rgb(255, 211, 195) 40%, rgba(255, 127, 80, 0.603) 48%); */
-        /* color: coral; */
-    }
-
-    .flip-card-back {
-        /* background: linear-gradient(120deg, rgb(255, 174, 145) 30%, coral 88%, */
-        /* bisque 40%, rgb(255, 185, 160) 78%); */
-        color: black;
-        transform: rotateY(180deg);
-    }
-
-    .foto img {
-        /* aspect-ratio: 9/16; */
-        width: 190px;
-        height: 254px;
-        border-radius: 2em;
-    }
-
-    .button {
-        --color: #00A97F;
-        padding: 0.8em 1.7em;
-        background-color: transparent;
-        border-radius: .3em;
-        position: relative;
-        overflow: hidden;
+        border-radius: 10px;
         cursor: pointer;
-        transition: .5s;
-        font-weight: 400;
-        font-size: 17px;
-        border: 1px solid;
-        font-family: inherit;
-        text-transform: uppercase;
-        color: var(--color);
-        z-index: 1;
+        -webkit-transition: all 0.5s;
+        transition: all 0.5s;
+        -webkit-transform-origin: 0;
+        -ms-transform-origin: 0;
+        transform-origin: 0;
+        -webkit-box-shadow: 1px 1px 12px #000;
+        box-shadow: 1px 1px 12px #000;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
     }
 
-    .button::before,
-    .button::after {
-        content: '';
-        display: block;
-        width: 50px;
-        height: 50px;
-        transform: translate(-50%, -50%);
-        position: absolute;
-        border-radius: 50%;
-        z-index: -1;
-        background-color: var(--color);
-        transition: 1s ease;
+    .book:hover .cover {
+        -webkit-transition: all 0.5s;
+        transition: all 0.5s;
+        -webkit-transform: rotatey(-80deg);
+        -ms-transform: rotatey(-80deg);
+        transform: rotatey(-80deg);
     }
 
-    .button::before {
-        top: -1em;
-        left: -1em;
-    }
-
-    .button::after {
-        left: calc(100% + 1em);
-        top: calc(100% + 1em);
-    }
-
-    .button:hover::before,
-    .button:hover::after {
-        height: 410px;
-        width: 410px;
-    }
-
-    .button:hover {
-        color: rgb(10, 25, 30);
-    }
-
-    .button:active {
-        filter: brightness(.8);
+    p {
+        font-size: 20px;
+        font-weight: bolder;
     }
 </style>
 
@@ -176,7 +123,7 @@ $goods = mysqli_query($connect, "SELECT * FROM produk");
     <section class="page-section portfolio" id="portfolio">
         <div class="container">
             <!-- Portfolio Section Heading-->
-            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Penjual</h2>
+            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Produk</h2>
             <!-- Icon Divider-->
             <div class="divider-custom">
                 <div class="divider-custom-line"></div>
@@ -184,20 +131,30 @@ $goods = mysqli_query($connect, "SELECT * FROM produk");
                 <div class="divider-custom-line"></div>
             </div>
             <!-- Portfolio Grid Items-->
-            <div class="row justify-content-center">
+            <div class="row justify-content-center p-5 ">
                 <!-- Portfolio Item 1-->
                 <?php while ($user = mysqli_fetch_assoc($goods)) :
                 ?>
-                    <div class="col-md-6 col-lg-2 mb-5 ">
-                        <div class="flip-card pe-4">
+                    <div class="col-md-6 col-lg-3 mb-5 ">
+                        <!-- <div class="flip-card pe-4">
                             <div class="flip-card-inner">
                                 <div class="flip-card-front foto">
                                     <p class="title"><?= $user["nama_produk"]; ?></p>
                                 </div>
                                 <div class="flip-card-back p-2">
-                                    <a href="Detail/?id=<?= $user["id"]; ?>"  class="button"> Detail
+                                    <a href="Detail/?id=<?= $user["id"]; ?>" class="button"> Detail
                                     </a>
                                 </div>
+                            </div>
+                        </div> -->
+                        <div class="book">
+                            <!-- <a href="Detail/?id=<?= $user["id"]; ?>" class="btn btn-primary"> Detail
+                            </a> -->
+                            <a href="Detail/?id=<?= $user["id"]; ?>" >
+                                <img src="Seller/img/FotoProduk/<?= $user["foto"]; ?>"  alt="" class="foto">
+                            </a>
+                            <div class="cover">
+                                <p><?= $user["nama_produk"]; ?></p>
                             </div>
                         </div>
                     </div>

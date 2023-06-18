@@ -3,9 +3,9 @@
 session_start();
 
 if (isset($_SESSION["penjual"])) {
-    header("../../../Seller");
+    header("Location: ../../../Seller/");
 } elseif (isset($_SESSION["admin"])) {
-    header("../../../Admin/Dashboard");
+    header("Location: ../../../Admin/");
 }
 
 require "../../../Function/index.php";
@@ -22,8 +22,8 @@ if (isset($_POST["submit"])) {
     //cek username
     if (mysqli_num_rows($result) === 1) {
 
-        //cek password
         $row = mysqli_fetch_assoc($result);
+        //cek password
         $verif = password_verify($password, $row["password"]);
             if ($verif) {
                 $_SESSION["penjual"] = true;
@@ -37,19 +37,21 @@ if (isset($_POST["submit"])) {
         
         
     }
-    // $cek = mysqli_num_rows($result);
+    $result2 = mysqli_query($connect, "SELECT * FROM users WHERE npm = '$npm' AND password = '$password' ");
+    $cek = mysqli_num_rows($result2);
 
-    // if ($cek > 0) {
+    if ($cek > 0) {
 
-    //     $data = mysqli_fetch_assoc($result);
+        $data = mysqli_fetch_assoc($result2);
 
-    //     if ($data["level"] === "admin") {
-    //         $_SESSION["admin"] = true;
-    //         echo "<script>
-    //                 window.location.href = '../../../Admin/Dashboard'
-    //             </script>";
-    //     }
-    // }
+        if ($data["level"] === "admin") {
+            $_SESSION["admin"] = true;
+            $_SESSION["user_admin"] = $npm;
+            echo "<script>
+                    window.location.href = '../../../Admin/'
+                </script>";
+        }
+    }
     $error = true;
 }
 

@@ -68,7 +68,7 @@ $profile = mysqli_fetch_assoc($queryUser);
                 <i class="fa fa-box fa-lg box-icon" aria-hidden="true"></i>Produk
             </a>
             <hr class="soft my-1 bg-white">
-            <a class="nav-link px-3 text-white" onclick="return confirm('Yakin mau keluar?');" href="../../../log/logout/index.php">
+            <a class="nav-link px-3 text-white" onclick="return confirm('Yakin mau keluar?');" href="../../../../../Project-ULBI/Project-1/log/logout/">
                 <i class="fa fa-sign-out fa-lg box-icon" aria-hidden="true"></i>LogOut
             </a>
         </nav>

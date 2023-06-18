@@ -1,12 +1,13 @@
 <?php 
+session_start();
 
 require '../../../../Function/index.php';
 $id = $_GET["id"];
+$id_penjual = $_SESSION["id_user"];
 
-$query = mysqli_query($connect, 
-                        "SELECT * FROM kategori 
-                         WHERE id_kategori = $id");
-$data = mysqli_fetch_array($query);
+
+$query = mysqli_query($connect, "SELECT * FROM kategori WHERE id_kategori = $id");
+// $data = mysqli_fetch_array($query);
 
 $count = mysqli_num_rows($query);
 

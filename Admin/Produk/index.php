@@ -1,11 +1,14 @@
 <?php
 // session_start();
 
+require "../../Function/index.php";
+
+
 // $id_user = $_SESSION["id_user"];
 
 // require "../../../Function/index.php";
 
-// $query = query("SELECT a.*,b.nama AS nama_kategori FROM produk a INNER JOIN kategori b ON a.id_kategori=b.id_kategori WHERE a.id_user = $id_user");
+$query = mysqli_query($connect,"SELECT a.*,b.nama AS nama_kategori, c.username AS nama_user FROM produk a INNER JOIN kategori b ON a.id_kategori=b.id_kategori INNER JOIN users c ON a.id_user = c.id_user");
 
 // $query1 = query("SELECT id FROM produk WHERE id_user = $id_user");
 
@@ -55,34 +58,33 @@
                                 </form>
                             </div>
                             <div class="table mt-5">
-                                <table class="table ms-0">
+                            <table class="table ms-0">
                                     <tr>
                                         <th scope="col">No.</th>
                                         <th scope="col">Foto</th>
                                         <th scope="col">Nama Produk</th>
                                         <th scope="col">Kategori</th>
                                         <th scope="col">Harga</th>
-                                        <th scope="col">Detail</th>
-                                        <th scope="col">Aksi</th>
+                                        <th scope="col">Stok</th>
+                                        <th scope="col">Penjual</th>
+                                        <!-- <th scope="col">Detail</th> -->
                                     </tr>
                                     <?php $i = 1; ?>
-                                    <?php //foreach ($query as $produk) : ?>
+                                    <?php while ($produk = mysqli_fetch_assoc($query)) : ?>
                                         <tr>
                                             <td scope="row"><?= $i; ?></td>
-                                            <td><img src="../../img/FotoProduk/<?//= $produk["foto"]; ?>" width="100" alt=""></td>
-                                            <td><?//= $produk["nama_produk"]; ?></td>
-                                            <td><?//= $produk["nama_kategori"]; ?></td>
-                                            <td><?//= $produk["harga"]; ?></td>
-                                            <td><?//= $produk["detail"]; ?></td>
-                                            <td><a href="Update/?id=<?//= $produk["id"]; ?>" class="btn btn-warning">Ubah</a> |
-                                                <a href="Delete/?id=<?//= $produk["id"]; ?>" class="btn btn-danger" onclick="return confirm('Yakin mau di hapus?')">Delete</a>
-                                            </td>
+                                            <td><img src="../../Seller/img/FotoProduk/<?=$produk["foto"]; ?>" width="100" alt=""></td>
+                                            <td><?= $produk["nama_produk"]; ?></td>
+                                            <td><?= $produk["nama_kategori"]; ?></td>
+                                            <td><?= $produk["harga"]; ?></td>
+                                            <td><?= $produk["stok"]; ?></td>
+                                            <td><?= $produk["nama_user"]; ?></td>
                                         </tr>
                                         <?php $i++; ?>
-                                        <?php //endforeach; ?>
-                                    <?php //endforeach; ?>
+                                    <?php endwhile; ?>
+                                    <?php //endforeach; 
+                                    ?>
                                 </table>
-                                <a href="Create/" class="btn btn-primary">INPUT</a>
                             </div>
                         </div>
                     </div>

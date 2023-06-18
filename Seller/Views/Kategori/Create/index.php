@@ -14,9 +14,9 @@ function tambah($data)
     global $connect;
 
 
-    $id_penjual = $_SESSION["id_user"] ;
+    $id_penjual = $_SESSION["id_user"];
     $nama = $data["nama"];
-    
+
 
     $query = "INSERT INTO kategori VALUES ('','$id_penjual' ,'$nama')";
     mysqli_query($connect, $query);
@@ -86,7 +86,15 @@ if (isset($_POST["submit"])) {
                                         <tr>
                                             <td class="p-5"><label for="nama">Nama Kategori</label></td>
                                             <td class="pe-3">:</td>
-                                            <td><input type="text" placeholder="isi kategori..." name="nama" id="nama" require class="form-control"></td>
+                                            <!-- <td><input type="text" placeholder="isi kategori..." name="nama" id="nama" require class="form-control"></td> -->
+                                            <td>
+                                                <select class="form-select" aria-label="Default select example" name="nama" id="nama">
+                                                    <option selected>Open this select menu</option>
+                                    
+                                                        <option >Makanan</option>
+                                                        <option >Minuman</option>
+                                                </select>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td></td>
