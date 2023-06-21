@@ -136,20 +136,7 @@ $goods = mysqli_query($connect, "SELECT * FROM produk");
                 <?php while ($user = mysqli_fetch_assoc($goods)) :
                 ?>
                     <div class="col-md-6 col-lg-3 mb-5 ">
-                        <!-- <div class="flip-card pe-4">
-                            <div class="flip-card-inner">
-                                <div class="flip-card-front foto">
-                                    <p class="title"><?= $user["nama_produk"]; ?></p>
-                                </div>
-                                <div class="flip-card-back p-2">
-                                    <a href="Detail/?id=<?= $user["id"]; ?>" class="button"> Detail
-                                    </a>
-                                </div>
-                            </div>
-                        </div> -->
                         <div class="book">
-                            <!-- <a href="Detail/?id=<?= $user["id"]; ?>" class="btn btn-primary"> Detail
-                            </a> -->
                             <a href="Detail/?id=<?= $user["id"]; ?>" >
                                 <img src="Seller/img/FotoProduk/<?= $user["foto"]; ?>"  alt="" class="foto">
                             </a>

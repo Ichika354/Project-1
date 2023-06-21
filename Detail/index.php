@@ -79,7 +79,7 @@ $rupiah = number_format($harga, 0, '.', '.');
                                 <td class="pe-3 pb-2">Harga</td>
                                 <td class="pe-3 pb-2"> </td>
                                 <td class="pe-3 pb-2">
-                                    Rp <?= $rupiah ?>
+                                    Rp <?= $rupiah ?> / unit
                                 </td>
                             </tr>
                             <tr>
@@ -96,13 +96,8 @@ $rupiah = number_format($harga, 0, '.', '.');
 
                             </tr>
                         </table>
-                        <!-- <p class="card-text"><?= $query["penjual"]; ?></p>
-                        <h5 class="card-title"><?= $query["nama_produk"]; ?></h5>
-                        <p class="card-text">Rp. <?= $query["harga"]; ?></p>
-                        <p class="card-text"><?= $query["stok"]; ?> stok</p>
-                        <p class="card-text"><?= $query["detail"]; ?></p> -->
                         <a href="../" class="btn btn-warning">BACK</a>
-                        <a href="/" class="btn btn-primary">BUY</a>
+                        <a href="../Transaksi/?id=<?= $query["id"]; ?>" class="btn btn-primary">BUY</a>
                     </div>
                 </div>
             </div>

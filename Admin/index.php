@@ -35,7 +35,7 @@
             <div class="row g-2 mb-3">
                 <div class="col-12">
                     <div class="d-block bg-white rounded shadow p-3">
-                        <h2>Selamat Datang <?= $profile["username"]; ?></h2>
+                        <h2>Selamat Datang Admin <?= $profile["username"]; ?></h2>
                         <p>Selamat datang, Admin! Anda telah berhasil masuk ke dalam sistem dengan level akses admin. Semoga Anda memiliki pengalaman yang menyenangkan dan sukses dalam menjalankan tugas-tugas administratif Anda. Jika Anda memerlukan bantuan atau informasi lebih lanjut, jangan ragu untuk menghubungi kami. Terima kasih atas dedikasi dan kontribusi Anda dalam menjaga kelancaran sistem ini.</p>
                     </div>
                 </div>
